@@ -1,5 +1,6 @@
 var express = require('express'),
-	http = require('http');
+	http = require('http'),
+	port = process.env.PORT || 3000;
 
 var app = express();
 app.configure(function() {
@@ -16,4 +17,4 @@ app.get('/review', function(req, res) {
 	res.render('review.html');
 });
 
-http.createServer(app).listen(8080);
+http.createServer(app).listen(port);
