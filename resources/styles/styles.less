@@ -62,33 +62,6 @@
     }
   }
   
-  section#rightside > section > a.album {
-    width: 100%;
-    text-align: left !important;
-    height: 3em !important;
-    padding: 0 !important;
-  }
-  
-  section#rightside > section > a.album > img {
-    width: 3em;
-    height: auto;
-    float: left;
-  }
-  
-  section#rightside > section > a.album > div {
-    display: table;
-    width: auto;
-    padding-left: 1em;
-    margin: 0;
-    height: 100% !important;
-    font-size: 0.86em;
-    div {
-      display: table-cell;
-      vertical-align: middle;
-      text-align: left;
-    }
-  }
-  
   section#rightside > section > div.fontwrapper {
     height: 2em !important;
     div.title {
@@ -136,15 +109,7 @@
     letter-spacing: inherit;
     padding: 1em 0 0 0;
   }
-  
-  section#rightside > section > a.album {
-    text-align: center;
-    height: 6em;
-    padding: 2.5% 2.5% 2.5% 2.5%;
-    width: 45%;
-    position: relative;
-  }
-  
+
   a.album > div {
     font-family: @font-h2-settings;
     font-size: 1.2em;
@@ -162,13 +127,6 @@
     width: 100%;
     height: 11.7em;
   }
-  
-  section#rightside > section > a.album > div {
-    position: absolute;
-    height: 110%;
-    width: 110%;
-  }
-  
   
   a.album > div > div {
       display: table-cell;
@@ -192,6 +150,65 @@
       -moz-transition: @hover-animation-fadein;
       -o-transition: @hover-animation-fadein;
       transition: @hover-animation-fadein;
+  }
+  
+  /*
+  
+  a.album > div {
+      font-family: @font-h2-settings;
+      font-size: 1em;
+      letter-spacing: -0.05em;
+      color:#fff;
+      text-align: center;
+      margin: 0 auto;
+      width: 100%;
+      height: auto !important;
+      background-color: inherit !important;
+  }
+  
+   a.album > div > div {
+      text-align: center;
+      margin: 0 auto;
+      width: auto;
+      display: block;
+      height: auto;
+      background-color: inherit !important; 
+      margin: 0 0.3em 0 0.3em;
+  }*/
+  
+  section#rightside > section > a.album {
+    width: 100%;
+    text-align: left !important;
+    height: 4em !important;
+    padding: 0 !important;
+  }
+  
+  section#rightside > section > a.album > img {
+    width: 4em;
+    height: auto;
+    float: left;
+  }
+  
+  section#rightside > section > a.album > div {
+    display: table;
+    position: relative !important;
+    width: auto;
+    padding-left: 1em;
+    margin: 0;
+    height: 100% !important;
+    font-size: 0.86em;
+    opacity: 1;
+    div {
+      width: 100%;
+      display: table-cell;
+      vertical-align: middle;
+      text-align: left;
+      font-size: 1em;
+      span {
+        display: inline;
+        padding: 0;
+      }
+    }
   }
   
   section#rightside > section > div.fontwrapper {
@@ -274,7 +291,7 @@
       display: none;
     }
   }
-
+  
   article#review, section#rightside {
     width: 100% !important;
   }
@@ -284,12 +301,14 @@
     width: 45% !important;
     a.album {
       height: 6em !important;
-      width: 100% !important;
       img {
         width: 6em;
       }
       div {
         font-size: 1.1em;
+        div {
+          padding-right: 0.8em;
+        }
       }
     }
   }
