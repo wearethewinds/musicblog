@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="399"
+   height="399"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="facebook.svg"
+   inkscape:export-filename="R:\Media\Pictures\Logos\Facebook Home (Clear).png"
+   inkscape:export-xdpi="230.97745"
+   inkscape:export-ydpi="230.97745"
+   viewBox="0 0 399 399">
+  <title
+     id="title4481">Facebook Home</title>
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="-18.538997"
+     inkscape:cy="161.20032"
+     inkscape:document-units="px"
+     inkscape:current-layer="g4469"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1003"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Facebook Home</dc:title>
+        <dc:date>2013-04-04</dc:date>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>http://www.reddit.com/user/m-p-3/</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:rights>
+          <cc:Agent>
+            <dc:title>Facebook ©</dc:title>
+          </cc:Agent>
+        </dc:rights>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>facebook home</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+        <cc:license
+           rdf:resource="https://www.facebook.com/brandpermissions/faq.php" />
+        <dc:source>https://www.facebook.com/FacebookMobile</dc:source>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer9"
+     inkscape:label="Facebook Home"
+     style="display:inline"
+     transform="translate(-194.96875,-276.5625)">
+    <g
+       id="g4469">
+      <path
+         d="m 497.74471,578.12634 c -35.46839,-0.13916 -54.36644,-17.48446 -67.49858,-48.04989 l -3.7569,-8.34035 -32.3773,-73.81913 c -10.73764,-26.13153 -37.38262,-43.78354 -67.44619,-43.78354 -40.67846,0 -73.68117,33.00311 -73.68117,73.71036 0,40.70644 33.00191,73.70875 73.68117,73.70875 28.37647,0 53.05082,-16.04409 65.36721,-39.56998 l 13.09335,30.20353 C 386.53456,564.85384 358.28245,579.29 326.66694,579.29 c -56.03275,0 -101.44822,-45.38947 -101.44822,-101.44701 0,-56.03075 45.41547,-101.47541 101.44622,-101.47541 42.28519,0 76.42476,22.58417 93.77047,62.59762 1.31561,3.10429 18.34101,42.9238 33.19425,76.81185 9.2001,20.97584 17.045,34.88735 42.48153,35.7471 24.99466,0.85855 42.14883,-14.35418 42.14883,-33.58694 0,-18.78728 -13.08017,-23.30355 -35.16408,-30.6462 -39.69674,-13.07936 -60.18793,-26.2139 -60.18793,-57.69266 0,-30.70338 20.89266,-51.18057 54.8371,-51.18057 22.11111,0 38.07562,9.83791 49.13318,29.45655 l -21.69883,11.08354 c -8.1768,-11.44344 -17.19376,-15.96091 -28.65399,-15.96091 -15.93173,0 -27.30838,11.08475 -27.30838,25.82562 0,20.92266 18.7189,24.08173 44.89202,32.67121 35.23327,11.47183 51.60966,24.57998 51.60966,57.30517 0,34.36071 -29.48576,59.38337 -67.97406,59.32738 z"
+         id="path7"
+         inkscape:connector-curvature="0"
+         style="fill:#ffffff"
+         sodipodi:nodetypes="ccccsssccssscccscssccsscsc" />
+    </g>
+  </g>
+</svg>
