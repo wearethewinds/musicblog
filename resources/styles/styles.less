@@ -1,5 +1,5 @@
-@font-h1-settings: 'Julius Sans One', sans-serif;;
-@font-h2-settings: 'Raleway', sans-serif;
+@font-julius: 'Julius Sans One', sans-serif;;
+@font-raleway: 'Raleway', sans-serif;
 @font-blockquote-settings: 'Tauri', sans-serif;
 @h1-color: #7C774D;
 @h2-color: #AAAAAA;
@@ -25,7 +25,6 @@
   
   a.album {
     height: 11.5em !important;
-    text-align: center;
     padding: 1.5em 0 0 0;
     img {
       height: 8.2em;
@@ -33,53 +32,24 @@
   }
   
   a.album > div {
-      font-family: @font-h2-settings;
-      font-size: 1em;
       letter-spacing: -0.05em;
       margin: 0 auto;
-      width: 100%;
-      height: auto !important;
-      background-color: inherit !important;
-  }
-  
-   a.album > div > div {
-      margin: 0 auto;
-      width: auto;
-      display: block;
-      height: auto;
-      background-color: inherit !important; 
-      margin: 0 0.3em 0 0.3em;
   }
   
   div.fontwrapper { 
     height: 3em !important;
-    div.title {
-      h1 {
-       font-size: 2.4em !important;
-      }
+    h1 {
+     font-size: 2.4em !important;
     }
   }
   
   section#rightside > section > div.fontwrapper {
-    height: 2em !important;
-    div.title {
-      display: table;
-      height: 100%;
-      h1 {
-        display: table-cell;
-        vertical-align: middle;
-        font-size: 1em !important;
-        letter-spacing: normal;
-      }
+    height: 2em !important; 
+    h1 {
+      font-size: 1em !important;
+      letter-spacing: normal;
     }
-  }
-  
-    
-  section#rightside {
-    letter-spacing: inherit;
-  }
-  
-  
+  }  
 }
 
 @media screen and (min-width: 1198px) {
@@ -104,12 +74,10 @@
   }
   
   section#rightside {
-    letter-spacing: inherit;
     padding: 1em 0 0 0;
   }
 
   a.album > div {
-    font-family: @font-h2-settings;
     font-size: 1.2em;
     letter-spacing: -0.05em;
     position: absolute;
@@ -145,48 +113,10 @@
       transition: @hover-animation-fadein;
   }
   
-  section#rightside > section > a.album {
-    width: 100%;
-    text-align: left !important;
-    height: 4em !important;
-    padding: 0 !important;
-  }
-  
-  section#rightside > section > a.album > img {
-    width: 4em;
-    height: auto;
-    float: left;
-  }
-  
-  section#rightside > section > a.album > div {
-    position: relative !important;
-    width: auto;
-    padding-left: 1em;
-    margin: 0;
-    height: 100% !important;
-    font-size: 0.86em;
-    opacity: 1;
-    div {
-      width: 100%;
-      text-align: left;
-      font-size: 1em;
-      span {
-        display: inline;
-        padding: 0;
-      }
-    }
-  }
-  
   section#rightside > section > div.fontwrapper {
     height: 2em;
-    div.title {
-      display: table;
-      height: 100%;
-      h1 {
-        display: table-cell;
-        vertical-align: middle;
-        font-size: 1em;
-      }
+    h1 {
+      font-size: 1em;
     }
   }
 }
@@ -237,14 +167,10 @@
     div.title {
       width: 100%;
       position: relative !important;
-      height: 100%;
-      display: table !important;
       h1 {
         font-size: 1.3em !important;
         padding: 0 0 0 0.2em !important;
         margin: .67em 0 !important;
-        display: table-cell;
-        vertical-align: middle;
       }
     }
     div {
@@ -258,17 +184,15 @@
   
   section#rightside > section {
     display: inline-block;
-    width: 45% !important;
+    width: 100% !important ;
     a.album {
       height: 6em !important;
+      width: 100% !important;
       img {
-        width: 6em;
+        width: 6em !important;
       }
       div {
-        font-size: 1.1em;
-        div {
-          padding-right: 0.8em;
-        }
+        font-size: 1.1em !important;
       }
     }
   }
@@ -294,21 +218,13 @@
 @media screen and (max-width: 500px) {
   div#main {
     width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
+    margin: 0 0 0 0 !important;
+    padding: 0 0 0 0 !important;
   }
+}
 
-  section#rightside > section {
-    display: block;
-    width: 100% !important;
-    a.album {
-      width: 100% !important;
-    }
-  }
-  
-  section#rightside > section:nth-of-type(1) {
-    padding-right: 2em;
-  }
+body {
+  overflow: hidden;
 }
 
 div#main {
@@ -324,7 +240,7 @@ header {
   div {
     padding-bottom: 1em;
     h1 {
-        font-family: @font-h1-settings;
+        font-family: @font-julius;
         font-size: 2em;
         letter-spacing: -0.1em;
         color: @dark-orange;
@@ -332,7 +248,7 @@ header {
     }
     
     h2 {
-        font-family: @font-h2-settings;
+        font-family: @font-raleway;
         font-size: 0.8em;
         letter-spacing: -0.05em;
         color: @light-orange;
@@ -345,6 +261,7 @@ header {
 
 a.album {
   text-decoration: none;
+  text-align: center;
 }
 
 section {
@@ -366,14 +283,16 @@ div.fontwrapper {
     bottom:0px;
     right:0px; 
     background-color: @bright-color;
-
+    display: table;
     h1 {
      font-size: 3em;
-     font-family: @font-h1-settings; 
+     font-family: @font-julius; 
      padding: 0.2em;
      margin: 0;
      color: #000;    
      letter-spacing: 0.2em;
+     display: table-cell;
+     vertical-align: middle;
     }
   }
 }
@@ -396,17 +315,17 @@ div.fontwrapper {
 
 article#review > p {
   padding: 0 2em 0 0;
-  font-family: @font-h2-settings;
+  font-family: @font-raleway;
 }
 
 section#about {
   h2 {
-    font-family: @font-h2-settings;
+    font-family: @font-raleway;
     color: #FFF;
     padding: 0 1rem 0 1rem;
   }
   p {
-    font-family: @font-h2-settings;
+    font-family: @font-raleway;
     padding: 0 1rem 0 1rem;
   }
   
@@ -426,9 +345,10 @@ div.heightwrapper {
   }
 }
 
-a.album > div{
+a.album > div {
   display: table;
   color: @color-white;
+  font-family: @font-raleway;
   div {
     display: table-cell;
     vertical-align: middle;
@@ -456,4 +376,40 @@ div.socialwrapper {
 div.spacer {
   display: inline-block;
   height: auto;
+}
+   
+section#rightside {
+  letter-spacing: inherit;
+}
+
+section#rightside > section > a.album {
+  width: 100%;
+  text-align: left;
+  height: 4em;
+  padding: 0;
+  img {
+    width: 4em;
+    height: auto;
+    float: left;
+  }
+}
+
+section#rightside > section > a.album > div {
+  position: relative;
+  width: auto;
+  padding-left: 1em;
+  margin: 0;
+  height: 100%;
+  font-size: 0.86em;
+  opacity: 1;
+  div {
+    width: 100%;
+    text-align: left;
+    font-size: 1em;
+    padding-right: 0.8em;
+    span {
+      display: inline;
+      padding: 0;
+    }
+  }
 }
