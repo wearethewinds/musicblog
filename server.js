@@ -8,7 +8,7 @@ var db = mongoose.connection;
 var recommendations = [];
 var latestreviews = [];
 var currentreview = {};
-//test
+
 db.on('error', console.error);
 db.once('open', function() {
   	var reviewSchema = new mongoose.Schema({
