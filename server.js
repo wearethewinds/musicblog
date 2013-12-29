@@ -11,10 +11,10 @@ var currentreview = {};
 var filesuffix;
 
 db.on('error', function() {
-	filesuffix = '.html';
+	fileprefix = 'static';
 });
 db.once('open', function() {
-	filesuffix = '.jade';
+	fileprefix = '';
   	var reviewSchema = new mongoose.Schema({
   		dbrefer: String,
 		reviewtext: [{
@@ -77,8 +77,8 @@ app.get('/', function(req, res) {
 
 app.get('/review', function(req, res) {
 	console.dir(currentreview);
-	res.render('review'+filesuffix, function() {
-		if (filesuffix === '.html') return {};
+	res.render(fileprefix+'review', function() {
+		if (fileprefix === 'static') return {};
 		return {
 			heading: currentreview.heading,
 			reviewtext: currentreview.reviewtext,
