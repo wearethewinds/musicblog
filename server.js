@@ -77,14 +77,17 @@ app.get('/', function(req, res) {
 
 app.get('/review', function(req, res) {
 	console.dir(currentreview);
-	res.render('review'+filesuffix, {
-		heading: currentreview.heading,
-		reviewtext: currentreview.reviewtext,
-		published: currentreview.published,
-		comments: currentreview.comments,
-		artist: currentreview.record.artist,
-		record: currentreview.record.title
-	});
+	res.render('review'+filesuffix, function() {
+		if (filesuffix === '.html') return {};
+		return {
+			heading: currentreview.heading,
+			reviewtext: currentreview.reviewtext,
+			published: currentreview.published,
+			comments: currentreview.comments,
+			artist: currentreview.record.artist,
+			record: currentreview.record.title
+		};
+	}());
 });
 
 http.createServer(app).listen(port);
