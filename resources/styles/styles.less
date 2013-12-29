@@ -263,6 +263,10 @@ body {
   overflow-x: hidden;
 }
 
+article#review > header > time {
+  font-family: @font-raleway;
+}
+
 div#main {
   width: 85%;
   max-width: 1400px;
@@ -281,7 +285,6 @@ header {
     color: @color-white;
     opacity: 0.4;
     font-size: 3.8em;
-    font-family: @font-raleway;
   }
   div {
     padding-bottom: 1em;
@@ -350,10 +353,15 @@ div.fontwrapper {
 
 article#review > header {
   display: block;
+   h1 {
+    font-family: @font-julius;
+    font-size: 3em;
+    display: inline-block;
+  }
   time {
     color: #000;
     position: relative;
-    display: block;
+    display: inline-block;
     text-align: right;
   }
   h2 {

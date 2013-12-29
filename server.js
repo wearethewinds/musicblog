@@ -81,7 +81,9 @@ app.get('/review', function(req, res) {
 		heading: currentreview.heading,
 		reviewtext: currentreview.reviewtext,
 		published: currentreview.published,
-		comments: currentreview.comments
+		comments: currentreview.comments,
+		artist: currentreview.record.artist,
+		record: currentreview.record.title
 	});
 });
 
