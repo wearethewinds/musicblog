@@ -8,13 +8,27 @@ var db = mongoose.connection;
 var recommendations = [];
 var latestreviews = [];
 var currentreview = {};
-var filesuffix;
+var dbon = false;
+var Review;
+var rP;
+
+
+var reviewProvider = function(){};
+reviewProvider.prototype.findReview = function(dbrefer) {
+	console.log(dbrefer);
+	Review.findOne({ dbrefer: dbrefer }, function(err, rev) {
+  		if (err) return false;
+  		if (rev) return rev;
+  		return false;
+	});
+};
 
 db.on('error', function() {
-	fileprefix = 'static';
+
 });
 db.once('open', function() {
-	fileprefix = '';
+	dbon = true;
+	rP = new reviewProvider();
   	var reviewSchema = new mongoose.Schema({
   		dbrefer: String,
 		reviewtext: [{
@@ -53,11 +67,7 @@ db.once('open', function() {
 			},
 		]
   	});
-	var Review = mongoose.model('Review', reviewSchema);		  	
-  	Review.findOne({ dbrefer: 'yatkha-1999-tuvarock' }, function(err, rev) {
-  		if (err) return console.error(err);
-  			currentreview = rev;
-	});
+	Review = mongoose.model('Review', reviewSchema);
 });
 
 mongoose.connect('mongodb://localhost:27017/musicblog');
@@ -76,18 +86,30 @@ app.get('/', function(req, res) {
 });
 
 app.get('/review', function(req, res) {
-	console.dir(currentreview);
-	res.render(fileprefix+'review', function() {
-		if (fileprefix === 'static') return {};
-		return {
-			heading: currentreview.heading,
-			reviewtext: currentreview.reviewtext,
-			published: currentreview.published,
-			comments: currentreview.comments,
-			artist: currentreview.record.artist,
-			record: currentreview.record.title
-		};
-	}());
+	res.render('staticreview');
+});
+
+app.get('/review/:dbrefer', function(req, res) {
+	if (dbon === false) res.render('staticreview');
+	else {
+		Review.findOne({dbrefer: req.params.dbrefer.toLowerCase()}, function(err, result) {
+			if (err) res.render('404');
+			else if (!result) res.render('404');
+			else {
+				console.log(result);
+				res.render('review', function() {
+					return {
+						heading: result.heading,
+						reviewtext: result.reviewtext,
+						published: result.published,
+						comments: result.comments,
+						artist: result.record.artist,
+						record: result.record.title
+					};
+				}());
+			}
+		});	
+	}
 });
 
 app.get('/404', function(req, res) {
