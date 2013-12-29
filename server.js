@@ -8,9 +8,13 @@ var db = mongoose.connection;
 var recommendations = [];
 var latestreviews = [];
 var currentreview = {};
+var filesuffix;
 
-db.on('error', console.error);
+db.on('error', function() {
+	filesuffix = '.html';
+});
 db.once('open', function() {
+	filesuffix = '.jade';
   	var reviewSchema = new mongoose.Schema({
   		dbrefer: String,
 		reviewtext: [{
@@ -73,13 +77,12 @@ app.get('/', function(req, res) {
 
 app.get('/review', function(req, res) {
 	console.dir(currentreview);
-	res.render('review.html');
-	/*res.render('review.html', {
+	res.render('review'+filesuffix, {
 		heading: currentreview.heading,
 		reviewtext: currentreview.reviewtext,
 		published: currentreview.published,
 		comments: currentreview.comments
-	});*/
+	});
 });
 
 http.createServer(app).listen(port);
