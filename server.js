@@ -90,4 +90,8 @@ app.get('/review', function(req, res) {
 	}());
 });
 
+app.get('/404', function(req, res) {
+	res.render('404');
+});
+
 http.createServer(app).listen(port);
