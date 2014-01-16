@@ -72,132 +72,13 @@ table {
 
 /**********************************************/
 
-@media screen and (max-width: 999px) {
+
+@media screen and (max-width: 1200px) {  
   div#main {
-    width: 100%;
+    width: 85% !important;
   }
   
   a.album {
-    width: 100%;
-    height: 4em;
-    display: box;
-    display: -webkit-box;
-    -webkit-box-align: center;
-  }
-  
-  a.album > img {
-    width: 4em;
-    float: left;
-    position: relative;
-  }
-  
-  a.album > div {
-    padding-left: 1em;
-    font-size: 1.3em;
-    box-sizing: border-box;
-    position: relative;
-  }
-  
-  a.album:hover {
-    -webkit-transistion: height ease 1s;
-    height: 5em;
-  }
-  
-  a.album:hover > img {
-    width: 5em;
-    height: auto;
-  }
-  
-  a.social {
-    width: 25%;
-    background-color: @light-orange;
-  }
-  
-  div.fontwrapper {
-    
-    div.title {
-      width: 100%;
-      position: relative;
-      h1 {
-        font-size: 1.3em;
-        padding: 0 0 0 0.2em;
-        margin: .67em 0;
-      }
-    }
-  }
-  
-  section#about {
-    div {
-      width: 100%; 
-      display: table;
-    }
-  }
-  
-  article#review {
-    width: 100%; 
-    p {
-      padding: 0;
-    }
-  }
-  
-  section#box404 {
-    div.heightwrapper div {
-      font-size: 2em;
-    }
-    div#calvin img{
-      padding: 1em;
-      max-width: 75%;
-    }
-  }
-}
-
-@media screen and (min-width: 500px) {
-  div#main {
-    width: 95%;
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
-  }
-  section#box404 div.heightwrapper div {
-    font-size: 1.5em;
-  }
-}
-
-
-@media screen and (min-width: 800px) {
-  div#main {
-    width: 85%;
-  }
-  
-  article#review {
-    font-size: 0.8em;
-    header {
-      time {
-        font-size: 1.5em;
-      }
-    }
-  }
-  
-  section#rightside a.album > div {
-    div {
-      font-size: 1em;
-    }
-  }
-  
-  article.comment > header {
-    time {
-      font-size: 2.3em;
-    }
-  }
-  
-  section#box404 div.heightwrapper div {
-    font-size: 2em;
-  }
-  
-}
-
-@media screen and (min-width: 1000px) {
-  a.album {
-    text-align: center;
     height: 15em !important;
     padding: 1.5em 0 0 0;
     img {
@@ -211,10 +92,234 @@ table {
       font-size: 1.1em;
       padding: 0 1em 0 1em;
       height: auto; 
-      display: -webkit-box;
-      -webkit-box-align: center;
+      display: inline-block;
+      div {
+        display: inline-block;
+      }
+  }
+  
+  div.fontwrapper { 
+    height: 3em !important;
+    h1 {
+     font-size: 2.4em !important;
+    }
+  }
+  
+  section#rightside > section > div.fontwrapper, article#review > section#commentary > div.fontwrapper {
+    height: 2em !important; 
+    h1 {
+      font-size: 1em !important;
+      letter-spacing: normal;
+    }
+  }  
+  
+  div.heightwrapper {
+    div {
+      font-size: 0.75em;
+    }
+  }
+  
+  article#review, section#rightside, section#commentary {
+    width: 100% !important;
+  }
+  
+  section#rightside > section {
+    display: inline-block;
+    width: 100% !important ;
+    a.album {
+      height: 6em !important;
+      width: 100% !important;
+      img {
+        width: 6em !important;
+      }
+      div {
+        font-size: 1.22em !important;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1198px) {
+  a.album {
+    text-align: center;
+    height: 18em;
+    padding: 1em 0em 1em 0em;
+    position: relative;
+    img {
+      max-height: 100%;
+    }
+  }
+  
+  section#rightside {
+    font-size: 1.75em;
+    padding: 0.5em 0 0 0;
+  }
+
+  a.album > div {
+    font-size: 2.2em;
+    letter-spacing: -0.05em;
+    position: absolute;
+    opacity: 0;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0; 
+    background-color: inherit;
+    width: 100%;
+    height: 9.1em;
+  }
+  
+  a.album > div > div > span{
+    display: block;
+    padding: 0 0.5em 0 0.5em;
+  }
+  
+  a.album:hover {
+  }
+  
+  a.album:hover > div {
+   opacity: 1;
+   -webkit-transition: @hover-animation-fadein;
+      -moz-transition: @hover-animation-fadein;
+      -o-transition: @hover-animation-fadein;
+      transition: @hover-animation-fadein;
+  }
+  
+  section#rightside > section > div.fontwrapper {
+    height: 3em;
+    h1 {
+      font-size: 1.15em;
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  
+  div#main {
+    width: 85% !important;
+  }
+  
+  a.album {
+    width: 100%;
+    text-align: left !important;
+    height: 4em !important;
+    padding: 0 !important;
+  }
+  
+  a.album > img {
+    width: 4em;
+    height: auto;
+    float: left;
+  }
+  
+  a.album > div {
+    width: auto;
+    padding-left: 1em;
+    margin: 0;
+    height: 100% !important;
+    font-size: 1.3em;
+  }
+  
+  a.album:hover {
+    -webkit-transistion: height ease 1s;
+    height: 5em !important;
+  }
+  
+  a.album:hover > img {
+    width: 5em;
+    height: auto;
+  }
+  
+  a.social {
+    width: 25% !important;
+    background-color: @light-orange !important;
+  }
+  
+  div.fontwrapper {
+    height: 4em;
+    div.title {
       width: 100%;
-      box-sizing: border-box;
+      position: relative !important;
+      h1 {
+        font-size: 1.3em !important;
+        padding: 0 0 0 0.2em !important;
+        margin: .67em 0 !important;
+      }
+    }
+  }
+  
+  section#about {
+    div {
+      width: 100% !important; 
+      display: table;
+    }
+  }
+  
+  article#review {
+    width: 100% !important; 
+    p {
+      padding: 0 !important;
+    }
+  }
+  
+  section#box404 {
+    div.heightwrapper div {
+      font-size: 2em !important;
+    }
+    div#calvin img{
+      padding: 1em;
+      max-width: 75%;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  div#main {
+    width: 95% !important;
+  }
+  
+  article#review {
+    font-size: 0.8em;
+    header {
+      time {
+        font-size: 1.5em !important;
+      }
+    }
+  }
+  
+  section#rightside a.album > div {
+    div {
+      font-size: 1em !important;
+    }
+  }
+  
+  article.comment > header {
+    time {
+      font-size: 2.3em !important;
+    }
+  }
+  
+}
+
+@media screen and (max-width: 500px) {
+  div#main {
+    width: 100% !important;
+    margin: 0 0 0 0 !important;
+    padding: 0 0 0 0 !important;
+  }
+  section#box404 div.heightwrapper div {
+    font-size: 1em !important;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  
+  a.album {
+    height: 14em;
+  }
+  
+  a.album > div {
+    height: 7.3em;
   }
 }
 
@@ -226,11 +331,13 @@ article#review > header > time {
   font-family: @font-raleway;
 }
 
-div#main {  
+div#main {
+  width: 85%;
   max-width: 1400px;
   margin: 1em auto;
   position: relative;
   background-color: @color-white;
+  padding: 0 1em 0 1em;
 }
 
 header {
@@ -263,10 +370,10 @@ header {
   }
 }
 
-/*a.album {
+a.album {
   text-decoration: none;
   text-align: center;
-}*/
+}
 
 section {
   width: 100%;
@@ -275,15 +382,14 @@ section {
 
 div.fontwrapper {
   width: 100%;
-  display: box;
-  display: -webkit-box;
-  -webkit-box-align: center;
-  box-align: center;
+  height: 5em;
+  display: table;
   background-color: @bright-color;
-  padding: 1em 1em 1em 0;
-  box-sizing: border-box;
   div.title {
+    display: table-cell;
+    vertical-align: middle;
     h1 {
+     font-size: 3em;
      font-family: @font-julius; 
      margin: 0;
      color: #000;
@@ -365,25 +471,20 @@ section#about {
 }
 
 div.heightwrapper {
-  display: box;
-  display: -webkit-flex;
-  -webkit-box-align: center;
-}
-
-a {
-  text-decoration: none;
+  display: table;
+  div {
+    display: table-cell;
+  }
 }
 
 a.album > div {
+  display: table !important;
   color: @color-white;
   font-family: @font-raleway;
+  margin: 0 !important;
   div {
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    display: table-cell !important;
+    vertical-align: middle !important;
   }
 }
 
@@ -459,13 +560,13 @@ h2 {
 section#box404 {
   div#calvin img{
     padding: 1em;
-    height: 7em;
+    height: auto;
   }
   div.heightwrapper div {
     font-family: @font-raleway;
+    font-size: 3.5em;
     color: @color-white;
-    display: -webkit-box;
-    -webkit-box-align: center;
+    vertical-align: middle;
   }
   p {
     padding-left: 0.5em;
