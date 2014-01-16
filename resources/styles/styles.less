@@ -77,6 +77,10 @@ table {
     width: 100%;
   }
   
+  br {
+    display: none;
+  }
+  
   a.album {
     width: 100%;
     height: 4em;
@@ -198,7 +202,7 @@ table {
 @media screen and (min-width: 1000px) {
   a.album {
     text-align: center;
-    height: 15em !important;
+    height: 15em;
     padding: 1.5em 0 0 0;
     img {
       height: 75%;
@@ -215,6 +219,7 @@ table {
       -webkit-box-align: center;
       width: 100%;
       box-sizing: border-box;
+      -webkit-box-pack: center;
   }
 }
 
@@ -260,6 +265,77 @@ header {
   }
   a {
     text-decoration: none;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  a.album {
+    text-align: center;
+    height: 12em;
+    padding: 1em 0em 1em 0em;
+    position: relative;
+    img {
+      height: 100%;
+    }
+  }
+  
+  section#rightside {
+    font-size: 1.75em;
+    padding: 0.5em 0 0 0;
+  }
+
+  section > a.album > div {
+    font-size: 2em;
+    letter-spacing: -0.05em;
+    position: absolute;
+    opacity: 0;
+    height: 100%;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0; 
+    background-color: inherit;
+    display: box;
+    display: -webkit-box;
+    -webkit-box-align: center;
+    box-align: center;
+    -webkit-box-pack: center;
+    margin: 0 auto;
+  }
+  
+  a.album > div > span{
+    display: block;
+    padding: 0 0.5em 0 0.5em;
+  }
+  
+  a.album:hover {
+  }
+  
+  a.album:hover > div {
+   opacity: 1;
+   -webkit-transition: @hover-animation-fadein;
+      -moz-transition: @hover-animation-fadein;
+      -o-transition: @hover-animation-fadein;
+      transition: @hover-animation-fadein;
+  }
+  
+  section#rightside > section > div.fontwrapper {
+    height: 3em;
+    h1 {
+      font-size: 1.15em;
+    }
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  a.album {
+    height: 15em;
+  }
+}
+
+@media screen and (min-width: 1450px) {
+  a.album {
+    height: 17em;
   }
 }
 
@@ -390,10 +466,10 @@ a.album > div {
 a.social {
   text-align: center;
   div {
-    display: table;
+    display: box;
+    display: -webkit-box;
+    -webkit-box-align: center;
     img {
-      display: table-cell;
-      vertical-align: middle;
       width: 90%;
       margin: 0 auto;
     }
