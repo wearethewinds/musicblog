@@ -86,7 +86,9 @@ table {
     height: 4em;
     display: box;
     display: -webkit-box;
+    display: -moz-box;
     -webkit-box-align: center;
+    -moz-box-align: center;
   }
   
   a.album > img {
@@ -104,6 +106,7 @@ table {
   
   a.album:hover {
     -webkit-transistion: height ease 1s;
+    -moz-transitation: height ease 1s;
     height: 5em;
   }
   
@@ -216,10 +219,13 @@ table {
       padding: 0 1em 0 1em;
       height: auto; 
       display: -webkit-box;
+      display: -moz-box;
       -webkit-box-align: center;
+      -moz-box-align: center;
       width: 100%;
       box-sizing: border-box;
       -webkit-box-pack: center;
+      -moz-box-pack: center;
   }
 }
 
@@ -297,9 +303,13 @@ header {
     background-color: inherit;
     display: box;
     display: -webkit-box;
+    display: -moz-box;
     -webkit-box-align: center;
+    -moz-box-align: center;
     box-align: center;
+    box-pack: center;
     -webkit-box-pack: center;
+    -moz-box-pack: center;
     margin: 0 auto;
   }
   
@@ -353,7 +363,9 @@ div.fontwrapper {
   width: 100%;
   display: box;
   display: -webkit-box;
+  display: -moz-box;
   -webkit-box-align: center;
+  -moz-box-align: center;
   box-align: center;
   background-color: @bright-color;
   padding: 1em 1em 1em 0;
@@ -443,7 +455,9 @@ section#about {
 div.heightwrapper {
   display: box;
   display: -webkit-flex;
+  display: -moz-flex;
   -webkit-box-align: center;
+  -moz-box-align: center;
 }
 
 a {
@@ -468,7 +482,10 @@ a.social {
   div {
     display: box;
     display: -webkit-box;
+    display: -moz-box;
+    box-align: center;
     -webkit-box-align: center;
+    -moz-box-align: center;
     img {
       width: 90%;
       margin: 0 auto;
@@ -540,8 +557,12 @@ section#box404 {
   div.heightwrapper div {
     font-family: @font-raleway;
     color: @color-white;
+    display: box;
     display: -webkit-box;
+    display: -moz-box;
+    box-align: center;
     -webkit-box-align: center;
+    -moz-box-align: center;
   }
   p {
     padding-left: 0.5em;
