@@ -221,32 +221,87 @@ table {
   }
   
   section > a.album > div {
-      letter-spacing: -0.05em;
-      margin: 0 auto;
-      font-size: 1.1em;
-      padding: 0 1em 0 1em;
-      height: auto;
-      display: box;
-        display: -webkit-box;
-        display: -moz-box;
-        display: -ms-flexbox;
-      box-align: center;
-        -webkit-box-align: center;
-        -moz-box-align: center;
-        -ms-flex-align: center;
-      width: 100%;
-      box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        -ms-flexbox-sizing: border-box;
-      box-pack: center;
-        -webkit-box-pack: center;
-        -moz-box-pack: center;
-        -ms-flex-pack: center;
-      box-orient: vertical;
-        -webkit-box-orient: vertical;
-        -moz-box-orient: vertical;
-        -ms-box-orient: vertical;
+    letter-spacing: -0.05em;
+    margin: 0 auto;
+    font-size: 1.1em;
+    padding: 0 1em 0 1em;
+    height: auto;
+    display: flex;
+      display: -webkit-box;
+      display: -ms-flexbox;
+    box-align: center;
+      -webkit-box-align: center;
+      -moz-box-align: center;
+      -ms-flex-align: center;
+    box-pack: center;
+      -webkit-box-pack: center;
+      -moz-box-pack: center;
+      -ms-flex-pack: center;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  a.album {
+    height: 12em;
+    padding: 1em 0em 1em 0em;
+    position: relative;
+    img {
+      height: 100%;
+    }
+  }
+  
+  section#rightside {
+    font-size: 1.75em;
+    padding: 0.5em 0 0 0;
+  }
+
+  section > a.album > div {
+    font-size: 2em;
+    position: absolute;
+    opacity: 0;
+    height: 100%;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0; 
+    background-color: inherit;
+  }
+  
+  a.album > div > span{
+    display: block;
+    padding: 0 0.5em 0 0.5em;
+  }
+  a.album:hover {
+  }
+  
+  a.album:hover > div {
+   opacity: 1;
+   transition: @hover-animation-fadein;
+     -webkit-transition: @hover-animation-fadein;
+     -moz-transition: @hover-animation-fadein;
+     -o-transition: @hover-animation-fadein;
+  }
+  
+  section#rightside > section > div.fontwrapper {
+    height: 3em;
+    h1 {
+      font-size: 1.15em;
+    }
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  a.album {
+    height: 15em;
+  }
+}
+
+@media screen and (min-width: 1450px) {
+  a.album {
+    height: 17em;
   }
 }
 
@@ -292,84 +347,6 @@ header {
   }
   a {
     text-decoration: none;
-  }
-}
-
-@media screen and (min-width: 1200px) {
-  a.album {
-    text-align: center;
-    height: 12em;
-    padding: 1em 0em 1em 0em;
-    position: relative;
-    img {
-      height: 100%;
-    }
-  }
-  
-  section#rightside {
-    font-size: 1.75em;
-    padding: 0.5em 0 0 0;
-  }
-
-  section > a.album > div {
-    font-size: 2em;
-    letter-spacing: -0.05em;
-    position: absolute;
-    opacity: 0;
-    height: 100%;
-    top:0;
-    left:0;
-    bottom:0;
-    right:0; 
-    background-color: inherit;
-    display: flex;
-      display: -webkit-box;
-      display: -ms-flexbox;
-    box-align: center;
-      -webkit-box-align: center;
-      -moz-box-align: center;
-      -ms-flex-align: center;
-    box-pack: center;
-      -webkit-box-pack: center;
-      -moz-box-pack: center;
-      -ms-flex-pack: center;
-    margin: 0 auto;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  a.album > div > span{
-    display: block;
-    padding: 0 0.5em 0 0.5em;
-  }
-  a.album:hover {
-  }
-  
-  a.album:hover > div {
-   opacity: 1;
-   transition: @hover-animation-fadein;
-     -webkit-transition: @hover-animation-fadein;
-     -moz-transition: @hover-animation-fadein;
-     -o-transition: @hover-animation-fadein;
-  }
-  
-  section#rightside > section > div.fontwrapper {
-    height: 3em;
-    h1 {
-      font-size: 1.15em;
-    }
-  }
-}
-
-@media screen and (min-width: 1300px) {
-  a.album {
-    height: 15em;
-  }
-}
-
-@media screen and (min-width: 1450px) {
-  a.album {
-    height: 17em;
   }
 }
 
@@ -561,15 +538,13 @@ section#rightside > section > a.album > div {
   height: 100%;
   font-size: 0.86em;
   opacity: 1;
-  div {
-    width: 100%;
-    text-align: left;
-    font-size: 1em;
-    padding-right: 0.8em;
-    span {
-      display: inline;
-      padding: 0;
-    }
+  justify-content: flex-start;
+  box-pack: start;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  span {
+    display: inline;
+    padding: 0;
   }
 }
 

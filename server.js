@@ -10,25 +10,12 @@ var latestreviews = [];
 var currentreview = {};
 var dbon = false;
 var Review;
-var rP;
-
-
-var reviewProvider = function(){};
-reviewProvider.prototype.findReview = function(dbrefer) {
-	console.log(dbrefer);
-	Review.findOne({ dbrefer: dbrefer }, function(err, rev) {
-  		if (err) return false;
-  		if (rev) return rev;
-  		return false;
-	});
-};
 
 db.on('error', function() {
 
 });
 db.once('open', function() {
 	dbon = true;
-	rP = new reviewProvider();
   	var reviewSchema = new mongoose.Schema({
   		dbrefer: String,
 		reviewtext: [{
@@ -96,7 +83,6 @@ app.get('/review/:dbrefer', function(req, res) {
 			if (err) res.render('404');
 			else if (!result) res.render('404');
 			else {
-				console.log(result);
 				res.render('review', function() {
 					return {
 						heading: result.heading,
