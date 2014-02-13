@@ -1,15 +1,11 @@
 var express = require('express'),
 	http = require('http'),
-	port = process.env.PORT || 3000;
-	
-var mongoose = require('mongoose');
-var moment = require('moment');
-var db = mongoose.connection;
-var recommendations = [];
-var latestreviews = [];
-var currentreview = {};
-var dbon = false;
-var Review;
+	port = process.env.PORT || 3000
+    latestReviews = require('./server_modules/latestreviews.js'),
+    mongoose = require('mongoose'),
+    moment = require('moment'),
+    db = mongoose.connection,
+    dbon = false;
 
 db.on('error', function() {
 
@@ -71,12 +67,9 @@ app.configure(function() {
 app.get('/', function(req, res) {
 	res.render('index.jade');
 });
+app.get('/latestreviews', latestReviews.getLatestReviews);
 
-app.get('/review', function(req, res) {
-	res.render('staticreview');
-});
-
-app.get('/review/:dbrefer', function(req, res) {
+/*app.get('/review/:dbrefer', function(req, res) {
 	if (dbon === false) res.render('staticreview');
 	else {
 		Review.findOne({dbrefer: req.params.dbrefer.toLowerCase()}, function(err, result) {
@@ -94,12 +87,12 @@ app.get('/review/:dbrefer', function(req, res) {
 					};
 				}());
 			}
-		});	
+		});
 	}
-});
+}); */
 
-app.get('/404', function(req, res) {
+/*app.get('/404', function(req, res) {
 	res.render('404');
-});
+});      */
 
 http.createServer(app).listen(port);
