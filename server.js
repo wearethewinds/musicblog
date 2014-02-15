@@ -2,6 +2,7 @@ var express = require('express'),
 	http = require('http'),
 	port = process.env.PORT || 3000
     latestReviews = require('./server_modules/latestreviews.js'),
+    review = require('./server_modules/review.js'),
     mongoose = require('mongoose'),
     moment = require('moment'),
     db = mongoose.connection,
@@ -67,7 +68,18 @@ app.configure(function() {
 app.get('/', function(req, res) {
 	res.render('index.jade');
 });
+app.get('/404', function(req, res) {
+    res.render('index.jade');
+});
+app.get('/review/query/:dbrefer', function(req, res) {
+    var dbrefer = req.params.dbrefer;
+    res.send(review.getReview(dbrefer));
+});
+app.get('/review/*', function(req, res) {
+    res.render('index.jade');
+});
 app.get('/latestreviews', latestReviews.getLatestReviews);
+
 
 /*app.get('/review/:dbrefer', function(req, res) {
 	if (dbon === false) res.render('staticreview');

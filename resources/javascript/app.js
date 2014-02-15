@@ -12,5 +12,10 @@ musicblog.config(function($routeProvider, $locationProvider) {
         .when('/404', {
             templateUrl: '/resources/views/404.html',
             controller: 'invalidRequestController'
-        });
+        })
+        .when('/review/:dbrefer', {
+            templateUrl: '/resources/views/review.html',
+            controller: 'reviewController'
+        })
+        .otherwise({redirectTo: '/404'});
 });

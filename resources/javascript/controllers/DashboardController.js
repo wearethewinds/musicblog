@@ -4,4 +4,5 @@ musicblog.controller('dashboardController', function($scope, reviewListService) 
         console.log($scope.latestReviews);
     })
     $scope.recommendedReviews = [];
+    $scope.loadImage = '/resources/images/ajax/ajax-loader.gif';
 });
