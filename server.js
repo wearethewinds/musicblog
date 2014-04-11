@@ -76,7 +76,7 @@ app.get('/review/query/:dbrefer', function(req, res) {
     res.send(review.getReview(dbrefer));
 });
 app.get('/review/*', function(req, res) {
-    res.render('index.jade');
+    res.render('staticreview.jade');
 });
 app.get('/latestreviews', latestReviews.getLatestReviews);
 

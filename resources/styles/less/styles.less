@@ -72,6 +72,10 @@ table {
 
 /**********************************************/
 
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
 @media screen and (max-width: 999px) {
   header {
     div.social {
@@ -447,9 +451,11 @@ article#review > header {
   }
   time {
     color: #000;
-    position: relative;
-    display: inline;
-    text-align: right;
+    position: absolute;
+    display: inline-block;
+    right: 0;
+    width: auto;
+
   }
   h2 {
     display: inline-block;
@@ -545,10 +551,12 @@ section#rightside {
 section#rightside > section > a.album {
   width: 100%;
   text-align: left;
-  height: 2.5em;
+  height: 1.8em;
   padding: 0;
+  font-size: 0.9em;
+  overflow: hidden;
   img {
-    width: 2.5em;
+    width: 1.8em;
     height: auto;
     float: left;
   }
