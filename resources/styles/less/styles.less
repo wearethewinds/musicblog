@@ -1,4 +1,4 @@
-@font-julius: 'Julius Sans One', sans-serif;;
+@font-julius: 'Julius Sans One', sans-serif;
 @font-raleway: 'Raleway', sans-serif;
 @font-blockquote-settings: 'Tauri', sans-serif;
 @h1-color: #7C774D;
@@ -9,15 +9,16 @@
 @hover-animation-suggestion-box: height 300ms ease 200ms;
 @hover-animation-suggestion-image: left 300ms ease 450ms, width 300ms ease 200ms;
 @hover-animation-suggestion-text: padding 300ms ease 300ms;
+@hover-animation-social-position: bottom 200ms ease;
 
-@dark-orange: #FA6900;
-@heaven-blue: #69D2E7;
+@dark-orange: #FF6600;
+@heaven-blue: #54a6e7;
 @light-orange: #F38630;
-@turquoise: #A7DBD8;
+@turquoise: #67b3ac;
 
 @just-blue: #BBCAEF;
 
-@bright-color: #E0E4CC;
+@bright-color: #CACFB0;
 
 @color-white: #FFF;
 
@@ -523,8 +524,15 @@ a.album > div {
   }
 }
 
-a.social {
+.social {
   text-align: center;
+  position: relative;
+  bottom: 0;
+  -webkit-transition: @hover-animation-social-position;
+  -moz-transition: @hover-animation-social-position;
+  -ms-transition: @hover-animation-social-position;
+  -o-transition: @hover-animation-social-position;
+  transition: @hover-animation-social-position;
   div {
     display: block;
     width: 100%;
@@ -532,6 +540,10 @@ a.social {
       width: 100%;
     }
   }
+}
+
+.social:hover {
+  bottom: 0.5em;
 }
 
 div.socialwrapper {
@@ -646,6 +658,7 @@ article.comment > header {
   h2{
     margin-top: 0;
     color: @color-white;
+    font-size: 2.2em;
   }
 }
 
