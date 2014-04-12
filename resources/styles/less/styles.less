@@ -314,10 +314,11 @@ body {
      -o-transition: @hover-animation-fadein;
   }
   
-  section#rightside > section > div.fontwrapper {
-    height: 3em;
+  #rightside > section > .fontwrapper {
+    height: 2em;
+    padding: 0.5em;
     h1 {
-      font-size: 1.15em;
+      font-size: 1.05em;
     }
   }
 }
@@ -458,7 +459,7 @@ article#review > header {
 
   }
   h2 {
-    display: inline-block;
+    display: block;
     font-style: italic;
   }
   div#cover {
@@ -551,20 +552,36 @@ section#rightside {
 section#rightside > section > a.album {
   width: 100%;
   text-align: left;
-  height: 1.8em;
+  height: 2em;
   padding: 0;
   font-size: 0.9em;
   overflow: hidden;
+  -webkit-transition: height 300ms ease 200ms;
   img {
-    width: 1.8em;
+    width: 2em;
     height: auto;
     float: left;
+    position: absolute;
+    left: -3.5em;
+    -webkit-transition: left 300ms ease 450ms, width 300ms ease 200ms;
+    z-index: 2;
+  }
+}
+
+section#rightside > section > a.album:hover {
+  height: 3.5em;
+  div {
+    padding-left: 5em;
+  }
+  img {
+    left: 0;
+    width: 3.5em;
   }
 }
 
 section#rightside > section > a.album > div {
   position: relative;
-  width: auto;
+  width: 13.5em;
   padding-left: 1em;
   margin: 0;
   height: 100%;
@@ -574,6 +591,7 @@ section#rightside > section > a.album > div {
   box-pack: start;
   -webkit-box-pack: start;
   -ms-flex-pack: start;
+  -webkit-transition: padding 300ms ease 300ms;
   span {
     display: inline;
     padding: 0;
