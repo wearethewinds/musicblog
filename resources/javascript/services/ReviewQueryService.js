@@ -6,6 +6,7 @@ musicblog.factory('reviewQueryService', function($http) {
                 url: '/review/query/' + dbRefer
             })
             .success(function(data, status, headers, config) {
+                    console.log('hallo');
                 return data;
             })
         }

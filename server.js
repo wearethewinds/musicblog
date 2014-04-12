@@ -76,6 +76,9 @@ app.get('/review/query/:dbrefer', function(req, res) {
     res.send(review.getReview(dbrefer));
 });
 app.get('/review/*', function(req, res) {
+    console.log(Review.findOne({dbrefer: 'yatkha-1999-tuvarock'}, function(err, review) {
+        console.log(review);
+    }));
     res.render('staticreview.jade');
 });
 app.get('/latestreviews', latestReviews.getLatestReviews);
