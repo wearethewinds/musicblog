@@ -4,7 +4,11 @@
 @h1-color: #7C774D;
 @h2-color: #AAAAAA;
 
-@hover-animation-fadein: all 0.2s ease-in-out;
+@hover-animation-fadein: opacity 0.3s ease-in-out 60ms;
+@hover-animation-album-height: height ease 1s;
+@hover-animation-suggestion-box: height 300ms ease 200ms;
+@hover-animation-suggestion-image: left 300ms ease 450ms, width 300ms ease 200ms;
+@hover-animation-suggestion-text: padding 300ms ease 300ms;
 
 @dark-orange: #FA6900;
 @heaven-blue: #69D2E7;
@@ -121,18 +125,20 @@ body {
   a.album > div {
     padding-left: 1em;
     font-size: 1.3em;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-flexbox-sizing: border-box;
+    -o-box-sizing: border-box;
     box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      -webkit-box-sizing: border-box;
-      -ms-flexbox-sizing: border-box;
     position: relative;
   }
   
   a.album:hover {
-    transistion: height ease 1s;
-      -webkit-transistion: height ease 1s;
-      -moz-transitation: height ease 1s;
-      -ms-transitation: height ease 1s;
+    -webkit-transistion: @hover-animation-album-height;
+    -moz-transitation: @hover-animation-album-height;
+    -ms-transitation: @hover-animation-album-height;
+    -o-transition: @hover-animation-album-height;
+    transistion: @hover-animation-album-height;
     height: 5em;
   }
   
@@ -313,14 +319,6 @@ body {
      -moz-transition: @hover-animation-fadein;
      -o-transition: @hover-animation-fadein;
   }
-  
-  #rightside > section > .fontwrapper {
-    height: 2em;
-    padding: 0.5em;
-    h1 {
-      font-size: 1.05em;
-    }
-  }
 }
 
 @media screen and (min-width: 1300px) {
@@ -400,8 +398,9 @@ section {
   margin-bottom: 1em;
 }
 
-div.fontwrapper {
+.fontwrapper {
   width: 100%;
+  font-size: 1rem;
   display: box;
     display: -webkit-box;
     display: -moz-box;
@@ -416,12 +415,12 @@ div.fontwrapper {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -ms-flexbox-sizing: border-box;
-  div.title {
+  .title {
     h1 {
      font-family: @font-julius; 
      margin: 0;
      color: #000;
-     padding-left: 0.2em;    
+     padding-left: 0.5em;
      letter-spacing: 0.2em;
     }
   }
@@ -556,14 +555,22 @@ section#rightside > section > a.album {
   padding: 0;
   font-size: 0.9em;
   overflow: hidden;
-  -webkit-transition: height 300ms ease 200ms;
+  -webkit-transition: @hover-animation-suggestion-box;
+  -moz-transition: @hover-animation-suggestion-box;
+  -ms-transition: @hover-animation-suggestion-box;
+  -o-transition: @hover-animation-suggestion-box;
+  transition: @hover-animation-suggestion-box;
   img {
     width: 2em;
     height: auto;
     float: left;
     position: absolute;
     left: -3.5em;
-    -webkit-transition: left 300ms ease 450ms, width 300ms ease 200ms;
+    -webkit-transition: @hover-animation-suggestion-image;
+    -moz-transition: @hover-animation-suggestion-image;
+    -ms-transition: @hover-animation-suggestion-image;
+    -o-transition: @hover-animation-suggestion-image;
+    transition: @hover-animation-suggestion-image;
     z-index: 2;
   }
 }
@@ -591,7 +598,11 @@ section#rightside > section > a.album > div {
   box-pack: start;
   -webkit-box-pack: start;
   -ms-flex-pack: start;
-  -webkit-transition: padding 300ms ease 300ms;
+  -webkit-transition: @hover-animation-suggestion-text;
+  -moz-transition: @hover-animation-suggestion-text;
+  -ms-transition: @hover-animation-suggestion-text;
+  -o-transition: @hover-animation-suggestion-text;
+  transition: @hover-animation-suggestion-text;
   span {
     display: inline;
     padding: 0;
