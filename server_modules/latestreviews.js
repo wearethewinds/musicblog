@@ -1,5 +1,5 @@
-exports.getLatestReviews = function(refer, res) {
-    res.render(refer, { newest: [
+exports.getLatestReviews = function(callback) {
+    callback([
         {
             artist: 'yat-kha',
             recordname: 'tuva.rock',
@@ -24,5 +24,5 @@ exports.getLatestReviews = function(refer, res) {
             dbref: 'songsohia-2006-magnoliaelectricco',
             imgref: '/resources/images/covers/4.jpg'
         }
-    ]});
+    ]);
 };

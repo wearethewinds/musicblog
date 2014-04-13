@@ -16,16 +16,16 @@ html
             h1 Music Review Blog
             h2 music|coding|music|design|music
         div.social
-          a.pure-u-1-4.social(href='http://facebook.com/fabian.potschies', target='_blank')
+          a.pure-u-1-4.socialitem(href='http://facebook.com/fabian.potschies', target='_blank')
             div
               img(src='/resources/images/icons/facebook.svg')
-          a.pure-u-1-4.social
+          a.pure-u-1-4.socialitem
             div
               img(src='/resources/images/icons/twitter.svg')
-          a.pure-u-1-4.social
+          a.pure-u-1-4.socialitem
             div
               img(src='/resources/images/icons/googleplus.svg')
-          a.pure-u-1-4.social(href='http://last.fm/user/wearethewinds', target='_blank')
+          a.pure-u-1-4.socialitem(href='http://last.fm/user/wearethewinds', target='_blank')
             div
               img(src='/resources/images/icons/lastfm.svg')
       article#review.pure-u-2-3
@@ -44,7 +44,7 @@ html
         section#commentary.pure-u-23-24
           .fontwrapper
             .title.pure-u-1
-              h1  #{review.comments.length} Commments
+              h1  #{review.comments.length} Comments
           each comment, i in review.comments
             article.comment
               header

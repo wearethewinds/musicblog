@@ -5,7 +5,7 @@
 @h2-color: #AAAAAA;
 
 @hover-animation-fadein: opacity 0.3s ease-in-out 60ms;
-@hover-animation-album-height: height ease 1s;
+@hover-animation-album-height: height 300ms ease;
 @hover-animation-suggestion-box: height 300ms ease 200ms;
 @hover-animation-suggestion-image: left 300ms ease 450ms, width 300ms ease 200ms;
 @hover-animation-suggestion-text: padding 300ms ease 300ms;
@@ -83,7 +83,7 @@ body {
 
 @media screen and (max-width: 999px) {
   header {
-    div.social {
+    .social {
       position: relative;
       width: 45%;
       padding: 0;
@@ -115,12 +115,22 @@ body {
       -webkit-box-align: center;
       -moz-box-align: center;
       -ms-flex-align: center;
+    -webkit-transition: @hover-animation-album-height;
+    -moz-transition: @hover-animation-album-height;
+    -ms-transition: @hover-animation-album-height;
+    -o-transition: @hover-animation-album-height;
+    transistion: @hover-animation-album-height;
   }
   
   a.album > img {
-    width: 4em;
+    height: 4em;
     float: left;
     position: relative;
+    -webkit-transition: @hover-animation-album-height;
+    -moz-transition: @hover-animation-album-height;
+    -ms-transition: @hover-animation-album-height;
+    -o-transition: @hover-animation-album-height;
+    transistion: @hover-animation-album-height;
   }
   
   a.album > div {
@@ -135,17 +145,12 @@ body {
   }
   
   a.album:hover {
-    -webkit-transistion: @hover-animation-album-height;
-    -moz-transitation: @hover-animation-album-height;
-    -ms-transitation: @hover-animation-album-height;
-    -o-transition: @hover-animation-album-height;
-    transistion: @hover-animation-album-height;
     height: 5em;
   }
   
   a.album:hover > img {
-    width: 5em;
-    height: auto;
+    height: 5em;
+    width: auto;
   }
   
   div.fontwrapper {
@@ -242,7 +247,7 @@ body {
     div {
       float: left;
     }
-    div.social {
+    .social {
       position: relative;
       width: 30%;
       float: right;
@@ -284,7 +289,7 @@ body {
 
 @media screen and (min-width: 1200px) {
   header {
-    div.social {
+    .social {
       width: 25%;
     }
   }
@@ -332,7 +337,7 @@ body {
 
 @media screen and (min-width: 1300px) {
   header {
-    div.social {
+    .social {
       width: 25%;
     }
   }
@@ -343,7 +348,7 @@ body {
 
 @media screen and (min-width: 1450px) {
   header {
-    div.social {
+    .social {
       width: 20%;
     }
   }
@@ -532,7 +537,7 @@ a.album > div {
   }
 }
 
-.social {
+.socialitem {
   text-align: center;
   position: relative;
   bottom: 0;
@@ -550,7 +555,7 @@ a.album > div {
   }
 }
 
-.social:hover {
+.socialitem:hover {
   bottom: 0.5em;
 }
 
@@ -639,7 +644,12 @@ h2 {
   letter-spacing: -0.05em !important;
 }
 
-section#box404 {
+#box404 {
+
+  .fontwrapper {
+    font-size: 1.5em;
+  }
+
   div#calvin img{
     padding: 1em;
     height: 7em;
@@ -650,7 +660,7 @@ section#box404 {
     display: box;
       display: -webkit-box;
       display: -moz-box;
-      display: -ms-flexbox;
+      display: -ms-flexbox; 
     box-align: center;
       -webkit-box-align: center;
       -moz-box-align: center;
@@ -659,6 +669,12 @@ section#box404 {
   p {
     padding-left: 0.5em;
     padding-right: 0.5em;
+  }
+  div:nth-of-type(1) {
+    flex: 1;
+  }
+  div:nth-of-type(2) {
+    flex: 4;
   }
 }
 

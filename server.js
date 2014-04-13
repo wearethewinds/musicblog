@@ -66,14 +66,22 @@ app.configure(function() {
 });
 
 app.get('/', function(req, res) {
-    latestReviews.getLatestReviews('index.jade', res);
+    latestReviews.getLatestReviews(function(reviews) {
+        res.render('index.jade', {
+            newest: reviews
+        });
+    });
 });
 app.get('/404', function(req, res) {
     res.render('404.jade');
 });
 app.get('/review/:dbrefer', function(req, res) {
-    var dbrefer = req.params.dbrefer;
-    review.getReview('review.jade', dbrefer, res);
+    review.getReview(req.params.dbrefer, function(review) {
+        if (!review) { res.render('404.jade'); }
+        res.render('review.jade', {
+            review: review
+        })
+    });
 });
 /*app.get('/review/*', function(req, res) {
     res.render('review.jade');
