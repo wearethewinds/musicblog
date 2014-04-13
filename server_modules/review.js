@@ -1,5 +1,9 @@
-exports.getReview = function(dbrefer, res) {
-    return Review.findOne({dbrefer: 'yatkha-1999-tuvarock'}, function(err, review) {
-        res.send(review);
+exports.getReview = function(refer, dbrefer, res) {
+    console.log(refer);
+    Review.findOne({dbrefer: dbrefer}, function(err, review) {
+        console.log(review);
+        res.render(refer, {
+            review: review
+        });
     });
 };

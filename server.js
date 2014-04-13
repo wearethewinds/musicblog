@@ -66,22 +66,18 @@ app.configure(function() {
 });
 
 app.get('/', function(req, res) {
-	res.render('index.jade', {
-        'newest': latestReviews.getLatestReviews()
-    });
+    latestReviews.getLatestReviews('index.jade', res);
 });
 app.get('/404', function(req, res) {
     res.render('404.jade');
 });
-app.get('/review/query/:dbrefer', function(req, res) {
+app.get('/review/:dbrefer', function(req, res) {
     var dbrefer = req.params.dbrefer;
-    review.getReview(dbrefer, res);
+    review.getReview('review.jade', dbrefer, res);
 });
-app.get('/review/*', function(req, res) {
+/*app.get('/review/*', function(req, res) {
     res.render('review.jade');
-});
-app.get('/latestreviews', latestReviews.getLatestReviews);
-
+});*/
 
 /*app.get('/review/:dbrefer', function(req, res) {
 	if (dbon === false) res.render('staticreview');
