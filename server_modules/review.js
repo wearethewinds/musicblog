@@ -1,5 +1,5 @@
-exports.getReview = function(dbrefer) {
-    return {
-        validRequest: false
-    };
+exports.getReview = function(dbrefer, res) {
+    return Review.findOne({dbrefer: 'yatkha-1999-tuvarock'}, function(err, review) {
+        res.send(review);
+    });
 };

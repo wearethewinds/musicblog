@@ -5,7 +5,7 @@
             <h1>Latest reviews</h1>
         </div>
     </div>
-    <a ng-repeat="latestReview in latestReviews" href="{{ latestReview.dbref }}" class="pure-u-1-4 album">
+    <a ng-repeat="latestReview in latestReviews" href="review/{{ latestReview.dbref }}" class="pure-u-1-4 album">
         <img src="{{ latestReview.imgref }}"/>
         <div>
             <span>{{ latestReview.artist }}<br> "{{ latestReview.recordname }}"</span>

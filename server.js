@@ -1,6 +1,6 @@
 var express = require('express'),
 	http = require('http'),
-	port = process.env.PORT || 3000
+	port = process.env.PORT || 3000,
     latestReviews = require('./server_modules/latestreviews.js'),
     review = require('./server_modules/review.js'),
     mongoose = require('mongoose'),
@@ -66,20 +66,19 @@ app.configure(function() {
 });
 
 app.get('/', function(req, res) {
-	res.render('index.jade');
+	res.render('index.jade', {
+        'newest': latestReviews.getLatestReviews()
+    });
 });
 app.get('/404', function(req, res) {
-    res.render('index.jade');
+    res.render('404.jade');
 });
 app.get('/review/query/:dbrefer', function(req, res) {
     var dbrefer = req.params.dbrefer;
-    res.send(review.getReview(dbrefer));
+    review.getReview(dbrefer, res);
 });
 app.get('/review/*', function(req, res) {
-    console.log(Review.findOne({dbrefer: 'yatkha-1999-tuvarock'}, function(err, review) {
-        console.log(review);
-    }));
-    res.render('staticreview.jade');
+    res.render('review.jade');
 });
 app.get('/latestreviews', latestReviews.getLatestReviews);
 
