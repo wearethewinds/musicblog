@@ -53,50 +53,32 @@ html
               p
                 | #{comment.text}
       section#rightside.pure-u-1-3
-        section
+        section#new
           .fontwrapper
             .title.pure-u-1
               h1 Latest reviews
-          a.pure-u-1-2.album.darkorange(href='/review/yatkha-1999-tuvarock')
-            img(src='/resources/images/covers/1.jpg')
-            div
-              span yat-kha "tuva.rock"
-          a.pure-u-1-2.album.heavenblue(href='/review')
-            img(src='/resources/images/covers/2.jpg')
-            div
-              span olan mill
-              span "hiraeth"
-          a.pure-u-1-2.album.turquoise(href='/review')
-            img(src='/resources/images/covers/3.jpg')
-            div
-              span yndi halda
-              span "enjoy eternal bliss"
-          a.pure-u-1-2.album.lightorange(href='/review')
-            img(src='/resources/images/covers/4.jpg')
-            div
-              span songs:ohia
-              span "magnolia electric co"
-        section
+          each latestreview, i in latestreviews
+            a.pure-u-1-2.album(href='/review/#{latestreview.dbrefer}')
+              img(src='#{latestreview.record.coverlores}')
+              div
+                span #{latestreview.record.artist} "#{latestreview.record.title}"
+        section#recommendations
           .fontwrapper
             .title.pure-u-1
               h1 We recommend
           a.pure-u-1-2.album.turquoise(href='/review')
             img(src='/resources/images/covers/5.jpg')
             div
-              span virus
-              span "the agent that shapes the desert"
+              span virus "the agent that shapes the desert"
           a.pure-u-1-2.album.lightorange(href='/review')
             img(src='/resources/images/covers/4.jpg')
             div
-              span songs:ohia
-              span "magnolia electric co"
+              span songs:ohia "magnolia electric co."
           a.pure-u-1-2.album.darkorange(href='/review')
             img(src='/resources/images/covers/6.jpg')
             div
-              span toe
-              span "for long tomorrow"
+              span toe "for long tomorrow"
           a.pure-u-1-2.album.heavenblue(href='/review')
             img(src='/resources/images/covers/7.jpg')
             div
-              span elysian blaze
-              span "blood geometry"
+              span elysian blaze "elysian blaze"

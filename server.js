@@ -33,14 +33,8 @@ db.once('open', function() {
 			title: String,
 			alternativetitle: String,
 			releaseyear: String,
-			coverhires: [{
-				url: String,
-				text: String				
-			}],
-			coverlores: [{
-				url: String,
-				text: String
-			}]			
+			coverhires: String,
+			coverlores: String
 		},
 		comments: [ 
 			{
@@ -76,41 +70,15 @@ app.get('/404', function(req, res) {
     res.render('404.jade');
 });
 app.get('/review/:dbrefer', function(req, res) {
-    review.getReview(req.params.dbrefer, function(review) {
-        if (!review) { res.render('404.jade'); }
-        res.render('review.jade', {
-            review: review
-        })
+    review.getReview(req.params.dbrefer, function(coll) {
+        if (!coll) { res.render('404.jade'); }
+        latestReviews.getLatestReviews(function(reviews) {
+            res.render('review.jade', {
+                latestreviews: reviews,
+                review: coll
+            })
+        });
     });
 });
-/*app.get('/review/*', function(req, res) {
-    res.render('review.jade');
-});*/
-
-/*app.get('/review/:dbrefer', function(req, res) {
-	if (dbon === false) res.render('staticreview');
-	else {
-		Review.findOne({dbrefer: req.params.dbrefer.toLowerCase()}, function(err, result) {
-			if (err) res.render('404');
-			else if (!result) res.render('404');
-			else {
-				res.render('review', function() {
-					return {
-						heading: result.heading,
-						reviewtext: result.reviewtext,
-						published: result.published,
-						comments: result.comments,
-						artist: result.record.artist,
-						record: result.record.title
-					};
-				}());
-			}
-		});
-	}
-}); */
-
-/*app.get('/404', function(req, res) {
-	res.render('404');
-});      */
 
 http.createServer(app).listen(port);

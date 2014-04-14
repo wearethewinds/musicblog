@@ -33,13 +33,13 @@ html(ng-app='musicblog')
           .title.pure-u-1
             h1 Latest reviews
         each review, i in newest
-          a.pure-u-1-4.album(ng-repeat='latestReview in latestReviews', href='/review/#{review.dbref}')
-            img(src='#{review.imgref}')
+          a.pure-u-1-4.album(href='/review/#{review.dbrefer}')
+            img(src='#{review.record.coverlores}')
             div
               span
-                | #{review.artist}
+                | #{review.record.artist}
                 br
-                | #{review.recordname}
+                | #{review.record.title}
       section#recommendations
         .fontwrapper
           .title.pure-u-1
@@ -85,10 +85,10 @@ html(ng-app='musicblog')
             h2 Special thanks to
             p
               a(href='http://www.colourlovers.com/lover/manekineko', target='_blank') manekineko
-              | for the colour palette.
+              |  for the colour palette.
             p
               a(href='http://www.colourlovers.com/', target='_blank') Colourlovers
-              | for letting manekineko create his color palette
+              |  for letting manekineko create his color palette
             p
               | And some arbitrary greetings to:
               br

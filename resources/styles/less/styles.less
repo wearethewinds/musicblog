@@ -317,6 +317,7 @@ body {
     bottom:0;
     right:0; 
     background-color: inherit;
+    text-transform: lowercase;
   }
   
   a.album > div > span{
@@ -506,10 +507,11 @@ section#about {
   
   a {
     color: #FFF;
+    -webkit-transition: text-shadow 500ms ease;
   }
   
   a:hover {
-    color: #FFF;
+    text-shadow: 7px 6px rgba(255, 255, 255, 0.3);
   }
 }
 
@@ -604,6 +606,7 @@ section#rightside > section > a.album:hover {
   height: 3.5em;
   div {
     padding-left: 5em;
+    padding-right: 1em;
   }
   img {
     left: 0;
@@ -613,8 +616,9 @@ section#rightside > section > a.album:hover {
 
 section#rightside > section > a.album > div {
   position: relative;
-  width: 13.5em;
+  width: auto;
   padding-left: 1em;
+  padding-right: 5em;
   margin: 0;
   height: 100%;
   font-size: 0.86em;
@@ -660,7 +664,7 @@ h2 {
     display: box;
       display: -webkit-box;
       display: -moz-box;
-      display: -ms-flexbox; 
+      display: -ms-flexbox;
     box-align: center;
       -webkit-box-align: center;
       -moz-box-align: center;
