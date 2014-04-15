@@ -22,59 +22,6 @@
 
 @color-white: #FFF;
 
-/**
- *   RESET CSS
- */
-
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-  display: block;
-}
-body {
-  line-height: 1;
-}
-ol, ul {
-  list-style: none;
-}
-blockquote, q {
-  quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: '';
-  content: none;
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
 /**********************************************/
 
 body {
@@ -121,7 +68,7 @@ body {
     -o-transition: @hover-animation-album-height;
     transistion: @hover-animation-album-height;
   }
-  
+
   .album > img {
     height: 4em;
     float: left;
@@ -132,7 +79,7 @@ body {
     -o-transition: @hover-animation-album-height;
     transistion: @hover-animation-album-height;
   }
-  
+
   .album > div {
     padding-left: 1em;
     font-size: 1.3em;
@@ -143,18 +90,17 @@ body {
     box-sizing: border-box;
     position: relative;
   }
-  
+
   .album:hover {
     height: 5em;
   }
-  
+
   .album:hover > img {
     height: 5em;
     width: auto;
   }
-  
+
   .fontwrapper {
-    
     .title {
       width: 100%;
       position: relative;
@@ -165,6 +111,7 @@ body {
       }
     }
   }
+
   
   #about {
     div {
@@ -223,12 +170,13 @@ body {
     }
   }
 
-  .comment:nth-of-type(even) {
-    background-color: @light-orange;
-  }
-
-  .comment:nth-of-type(odd) {
-    background-color: @turquoise;
+  .comment {
+    &:nth-of-type(even) {
+      background-color: @light-orange;
+    }
+    &:nth-of-type(odd) {
+      background-color: @turquoise;
+    }
   }
   
   .comment > header {
@@ -323,8 +271,6 @@ body {
   .album > div > span{
     display: block;
     padding: 0 0.5em 0 0.5em;
-  }
-  .album:hover {
   }
   
   .album:hover > div {
@@ -503,10 +449,9 @@ section {
   a {
     color: #FFF;
     -webkit-transition: text-shadow 500ms ease;
-  }
-  
-  a:hover {
-    text-shadow: 7px 6px rgba(255, 255, 255, 0.3);
+    &:hover {
+      text-shadow: 7px 6px rgba(255, 255, 255, 0.3);
+    }
   }
 }
 
@@ -543,6 +488,14 @@ a {
   -ms-transition: @hover-animation-social-position;
   -o-transition: @hover-animation-social-position;
   transition: @hover-animation-social-position;
+  &.github {
+    img:last-of-type {
+      position: absolute;
+      left: 0;
+      opacity: 0;
+      transition: opacity 200ms ease 100ms;
+    }
+  }
   div {
     display: block;
     width: 100%;
@@ -552,22 +505,12 @@ a {
   }
 }
 
-.github {
-  img:last-of-type {
-    position: absolute;
-    left: 0;
-    opacity: 0;
-    transition: opacity 200ms ease 100ms;
-  }
-}
-
 .socialitem:hover {
   bottom: 0.5em;
-}
-
-.github:hover {
-  img:last-of-type {
-    opacity: 1;
+  &.github {
+    img:last-of-type {
+      opacity: 1;
+    }
   }
 }
 
@@ -684,11 +627,13 @@ h2 {
     padding-left: 0.5em;
     padding-right: 0.5em;
   }
-  div:nth-of-type(1) {
-    flex: 1;
-  }
-  div:nth-of-type(2) {
-    flex: 4;
+  div{
+    &:nth-of-type(1) {
+      flex: 1;
+    }
+    &nth-of-type(2) {
+      flex: 4;
+    }
   }
 }
 
