@@ -557,8 +557,23 @@ a.album > div {
   }
 }
 
+.github {
+  img:last-of-type {
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    transition: opacity 300ms ease 200ms;
+  }
+}
+
 .socialitem:hover {
   bottom: 0.5em;
+}
+
+.github:hover {
+  img:last-of-type {
+    opacity: 1;
+  }
 }
 
 div.socialwrapper {

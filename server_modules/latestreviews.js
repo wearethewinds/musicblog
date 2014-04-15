@@ -4,7 +4,6 @@ exports.getLatestReviews = function(callback) {
         .sort({'_id': -1})
         .limit(4)
         .exec(function(err, reviews) {
-            console.log(reviews);
            callback(reviews);
         });
 };
