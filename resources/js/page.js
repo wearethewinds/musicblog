@@ -11,13 +11,13 @@
   }();
   $(document).ready(function () {
        registerReview();
+       getRecommendations();
   });
 
   var registerReview = function () {
       var reviewsReadByUser,
           url = window.location.href,
           dbReference = url.split('/')[url.split('/').length - 1];
-      // need to extract db reference
       if (localStorageAvailable) {
           console.log(localStorage.getItem('reviews'));
           reviewsReadByUser = JSON.parse(localStorage.getItem('reviews'));
@@ -29,5 +29,26 @@
               localStorage.setItem('reviews', JSON.stringify(reviewsReadByUser));
           }
       }
+  };
+
+  var getRecommendations = function () {
+      $.ajax({
+          type: 'GET',
+          url: '/review/recommendations',
+          data: toObject(JSON.parse(localStorage.getItem('reviews')))
+      })
+          .done (function(data) {
+            $('#recommendations').append(data);
+      });
+  }
+
+  var toObject = function(arr) {
+      console.log(arr);
+      var assocArr = {};
+      for (var i = arr.length - 1; i >= 0; --i) {
+          assocArr[arr[i]] = 1;
+      }
+      console.log(assocArr);
+      return assocArr;
   };
 }(jQuery));

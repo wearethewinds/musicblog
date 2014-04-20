@@ -2,6 +2,7 @@ var express = require('express'),
 	http = require('http'),
 	port = process.env.PORT || 3000,
     latestReviews = require('./server_modules/latestreviews.js'),
+    recommendations = require('./server_modules/recommendations.js'),
     review = require('./server_modules/review.js'),
     mongoose = require('mongoose'),
     moment = require('moment'),
@@ -25,9 +26,7 @@ db.once('open', function() {
 			url: String,
 			text: String
 		}],
-		tags: [{
-			tag: String
-		}],
+		tags: [String],
 		record: {
 			artist: String,
 			title: String,
@@ -53,11 +52,11 @@ mongoose.connect('mongodb://localhost:27017/musicblog');
 
 var app = express();
 app.configure(function() {
-	app.set('views', __dirname + '/resources/views');
-	app.set('view engine', 'jade');
-	app.use("/resources", express.static(__dirname + '/resources'));
-	app.engine('html', require('ejs').renderFile);
-	app.use(app.router);
+	app.set('views', __dirname + '/resources/views')
+	    .set('view engine', 'jade')
+	    .use("/resources", express.static(__dirname + '/resources'))
+	    .engine('html', require('ejs').renderFile)
+	    .use(app.router);
 });
 
 app.get('/', function(req, res) {
@@ -70,6 +69,20 @@ app.get('/', function(req, res) {
 app.get('/404', function(req, res) {
     res.render('404.jade');
 });
+
+app.get('/review/recommendations', function(req, res) {
+    var tags = [];
+    for (var key in req.query) {
+        tags.push(key);
+    }
+    console.log(tags);
+    recommendations.getRecommendations(tags, review, function(coll) {
+      res.render('minis/album.jade', {
+         reviews: coll
+      });
+    });
+});
+
 app.get('/review/:dbrefer', function(req, res) {
     review.getReview(req.params.dbrefer, function(coll) {
         if (!coll) { res.render('404.jade'); }
@@ -77,7 +90,7 @@ app.get('/review/:dbrefer', function(req, res) {
             res.render('review.jade', {
                 latestreviews: reviews,
                 review: coll
-            })
+            });
         });
     });
 });
