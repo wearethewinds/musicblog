@@ -43,7 +43,8 @@ db.once('open', function() {
 				text: String,
 				date: String
 			},
-		]
+		],
+        accessCount: Number
   	});
 	Review = mongoose.model('Review', reviewSchema);
 });
