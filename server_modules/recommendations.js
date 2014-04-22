@@ -2,7 +2,8 @@ exports.getRecommendations = function(readReviews, review, comingFrom, callback)
     var async = require('async'),
         tagCloud = {},
         genreArray = false,
-        recommendedReviews = [];
+        recommendedReviews = [],
+        addedReviews = [];
 
     async.series([
         function (callback) {
@@ -21,8 +22,7 @@ exports.getRecommendations = function(readReviews, review, comingFrom, callback)
 
     function findReviewsByGenreTags (callback) {
         var enoughReviews = false,
-            counter = 0,
-            addedReviews = [];
+            counter = 0;
         if (genreArray.length === 0) { return callback(null, 'two'); }
         for (var i = 0, max = genreArray.length; i < max && !enoughReviews; ++i) {
             Review
@@ -54,7 +54,7 @@ exports.getRecommendations = function(readReviews, review, comingFrom, callback)
     function fillUpReviews (callback) {
         if (recommendedReviews.length >= 4) { return callback(null, 'two'); }
         Review
-            .find({dbrefer: {$ne: comingFrom}})
+            .find({dbrefer: {$ne: comingFrom, $nin: addedReviews}})
                 .sort({'accessCount': -1})
             .limit(4 - recommendedReviews.length)
             .exec(function(err, reviews) {
