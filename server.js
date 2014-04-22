@@ -70,15 +70,28 @@ app.get('/404', function(req, res) {
     res.render('404.jade');
 });
 
-app.get('/review/recommendations', function(req, res) {
+app.get('/review/:dbrefer/recommendations', function(req, res) {
     var tags = [];
     for (var key in req.query) {
         tags.push(key);
     }
-    recommendations.getRecommendations(tags, review, function(coll) {
+    recommendations.getRecommendations(tags, review, req.params.dbrefer, function(coll) {
       res.render('minis/album.jade', {
          reviews: coll
       });
+    });
+});
+
+app.get('/review/recommendations', function (req, res) {
+    var tags = [];
+    for (var key in req.query) {
+        tags.push(key);
+    }
+    console.log(tags);
+    recommendations.getRecommendations(tags, review, '', function(coll) {
+        res.render('minis/album.jade', {
+            reviews: coll
+        });
     });
 });
 

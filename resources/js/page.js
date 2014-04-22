@@ -8,11 +8,25 @@
       } catch(e) {
           return false;
       }
-  }();
+  }(),
+    page = null;
+
   $(document).ready(function () {
-       registerReview();
-       getRecommendations();
+       if ($('#review').length > 0) {
+           page = new Review();
+       } else {
+           page = new MainSite();
+       }
   });
+
+  var MainSite = function() {
+      getRecommendations();
+  }
+
+  var Review = function() {
+      var dbref = registerReview();
+      getRecommendations(dbref);
+  };
 
   var registerReview = function () {
       var reviewsReadByUser,
@@ -33,12 +47,18 @@
           reviewsReadByUser.push(dbReference);
           localStorage.setItem('reviews', JSON.stringify(reviewsReadByUser));
       }
+      return dbReference;
   };
 
-  var getRecommendations = function () {
+  var getRecommendations = function (comingFrom) {
+      if (comingFrom) {
+          comingFrom += '/';
+      } else {
+          comingFrom = '';
+      }
       $.ajax({
           type: 'GET',
-          url: '/review/recommendations',
+          url: '/review/'+comingFrom+'recommendations',
           data: toObject(JSON.parse(localStorage.getItem('reviews')))
       })
           .done (function(data) {
@@ -47,8 +67,8 @@
   }
 
   var toObject = function(arr) {
-      console.log(arr);
       var assocArr = {};
+      if (!arr) { return assocArr; }
       for (var i = arr.length - 1; i >= 0; --i) {
           assocArr[arr[i]] = 1;
       }

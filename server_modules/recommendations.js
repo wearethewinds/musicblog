@@ -1,4 +1,4 @@
-exports.getRecommendations = function(readReviews, review, callback) {
+exports.getRecommendations = function(readReviews, review, comingFrom, callback) {
     var async = require('async'),
         tagCloud = {},
         genreArray = false,
@@ -21,18 +21,21 @@ exports.getRecommendations = function(readReviews, review, callback) {
 
     function findReviewsByGenreTags (callback) {
         var enoughReviews = false,
-            counter = 0;
+            counter = 0,
+            addedReviews = [];
+        if (genreArray.length === 0) { return callback(null, 'two'); }
         for (var i = 0, max = genreArray.length; i < max && !enoughReviews; ++i) {
             Review
-                .find({tags: genreArray[i]})
+                .find({tags: {$in: genreArray[i]}})
                 .limit(4)
                 .exec(function(err, reviews) {
                     if (reviews) {
                         for (var j = reviews.length - 1; j >= 0; --j) {
-                            if (readReviews.indexOf(reviews[j].dbrefer) >= 0) {
-                                console.log('omit review');
+                            if (readReviews.indexOf(reviews[j].dbrefer) >= 0 ||
+                                addedReviews.indexOf(reviews[j].dbrefer) >= 0) {
                             }
                             else {
+                                addedReviews.push(reviews[j].dbrefer);
                                 recommendedReviews = recommendedReviews.concat(reviews[j]);
                                 if (recommendedReviews.length >= 4) {
                                     enoughReviews = true;
@@ -44,15 +47,14 @@ exports.getRecommendations = function(readReviews, review, callback) {
                     }
                    ++counter;
                    if (counter === max - 1) { callback(null, 'two'); }
-                });
+            });
         }
     };
 
     function fillUpReviews (callback) {
-        console.log(readReviews[0]);
         if (recommendedReviews.length >= 4) { return callback(null, 'two'); }
         Review
-            .find({dbrefer: {$ne: readReviews[0]}})
+            .find({dbrefer: {$ne: comingFrom}})
                 .sort({'accessCount': -1})
             .limit(4 - recommendedReviews.length)
             .exec(function(err, reviews) {
@@ -60,7 +62,6 @@ exports.getRecommendations = function(readReviews, review, callback) {
                     callback(null, 'three')
                     return;
                 }
-                console.log(reviews.length);
                 recommendedReviews = recommendedReviews.concat(reviews);
                 callback(null, 'three');
             });
@@ -71,6 +72,7 @@ exports.getRecommendations = function(readReviews, review, callback) {
             if (readReviews.length > 5) { return 5;}
             return readReviews.length;
         }();
+        if (counter === 0) { return callback(null, 'one'); }
         // only the last 6 reviews are considered for the calculation
         for (var i = counter - 1; i >= 0; --i) {
             review.getReview(readReviews[i], function(rev) {
