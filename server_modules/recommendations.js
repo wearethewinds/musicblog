@@ -1,11 +1,12 @@
 exports.getRecommendations = function(readReviews, review, callback) {
     var async = require('async'),
         tagCloud = {},
+        genreArray = false,
         recommendedReviews = [];
 
     async.series([
         function (callback) {
-            generateTagCloud (callback);
+            genreArray = generateTagCloud (callback);
         },
         function (callback) {
             fillUpReviews(callback);
@@ -13,6 +14,21 @@ exports.getRecommendations = function(readReviews, review, callback) {
             callback(recommendedReviews);
         }
     );
+
+    function findReviewsByGenreTags (callback) {
+        var enoughReviews = false;
+        for (var i = 0, max = genreArray.length; i < max; ++i) {
+            Review
+                .find({tags: genreArray[i]})
+                .limit(4)
+                .exec(function(err, reviews) {
+                   recommendedReviews = recommendedReviews.concat(reviews);
+                    if (recommendedReviews.length >= 4) { enoughReviews = true; }
+                    if (i === max - 1) { callback(null, 'two'); }
+                });
+            if (enoughReviews) { callback(null, 'two'); }
+        }
+    };
 
     function fillUpReviews (callback) {
         if (recommendedReviews.length >= 4) { return callback(null, 'two'); }
