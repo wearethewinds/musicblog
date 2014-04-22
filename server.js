@@ -75,7 +75,6 @@ app.get('/review/recommendations', function(req, res) {
     for (var key in req.query) {
         tags.push(key);
     }
-    console.log(tags);
     recommendations.getRecommendations(tags, review, function(coll) {
       res.render('minis/album.jade', {
          reviews: coll
@@ -84,6 +83,9 @@ app.get('/review/recommendations', function(req, res) {
 });
 
 app.get('/review/:dbrefer', function(req, res) {
+    review.increaseReviewCount(req.params.dbrefer, function() {
+
+    });
     review.getReview(req.params.dbrefer, function(coll) {
         if (!coll) { res.render('404.jade'); }
         latestReviews.getLatestReviews(function(reviews) {

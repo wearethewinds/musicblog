@@ -8,6 +8,10 @@ exports.getRecommendations = function(readReviews, review, callback) {
         function (callback) {
             genreArray = generateTagCloud (callback);
         },
+        function(callback) {
+            genreArray = combine(tagCloud);
+            findReviewsByGenreTags(callback);
+        },
         function (callback) {
             fillUpReviews(callback);
         }], function () {
@@ -16,35 +20,59 @@ exports.getRecommendations = function(readReviews, review, callback) {
     );
 
     function findReviewsByGenreTags (callback) {
-        var enoughReviews = false;
-        for (var i = 0, max = genreArray.length; i < max; ++i) {
+        var enoughReviews = false,
+            counter = 0;
+        for (var i = 0, max = genreArray.length; i < max && !enoughReviews; ++i) {
             Review
                 .find({tags: genreArray[i]})
                 .limit(4)
                 .exec(function(err, reviews) {
-                   recommendedReviews = recommendedReviews.concat(reviews);
-                    if (recommendedReviews.length >= 4) { enoughReviews = true; }
-                    if (i === max - 1) { callback(null, 'two'); }
+                    if (reviews) {
+                        for (var j = reviews.length - 1; j >= 0; --j) {
+                            if (readReviews.indexOf(reviews[j].dbrefer) >= 0) {
+                                console.log('omit review');
+                            }
+                            else {
+                                recommendedReviews = recommendedReviews.concat(reviews[j]);
+                                if (recommendedReviews.length >= 4) {
+                                    enoughReviews = true;
+                                    callback(null, 'two');
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                   ++counter;
+                   if (counter === max - 1) { callback(null, 'two'); }
                 });
-            if (enoughReviews) { callback(null, 'two'); }
         }
     };
 
     function fillUpReviews (callback) {
+        console.log(readReviews[0]);
         if (recommendedReviews.length >= 4) { return callback(null, 'two'); }
         Review
-            .find()
-            .sort({'accessCount': 1})
+            .find({dbrefer: {$ne: readReviews[0]}})
+                .sort({'accessCount': -1})
             .limit(4 - recommendedReviews.length)
             .exec(function(err, reviews) {
+                if (!reviews) {
+                    callback(null, 'three')
+                    return;
+                }
+                console.log(reviews.length);
                 recommendedReviews = recommendedReviews.concat(reviews);
-                callback(null, 'two');
+                callback(null, 'three');
             });
     };
 
     function generateTagCloud (callback) {
-        var counter = readReviews.length ;
-        for (var i = readReviews.length - 1; i >= 0; --i) {
+        var counter = function() {
+            if (readReviews.length > 5) { return 5;}
+            return readReviews.length;
+        }();
+        // only the last 6 reviews are considered for the calculation
+        for (var i = counter - 1; i >= 0; --i) {
             review.getReview(readReviews[i], function(rev) {
                 if (Object.keys(tagCloud).length < 6) {
                     for (var j = rev.tags.length - 1; j >= 0; --j) {
@@ -58,7 +86,6 @@ exports.getRecommendations = function(readReviews, review, callback) {
                 }
                 --counter;
                 if (counter === 0) {
-                    console.log(combine(tagCloud));
                     callback(null, 'one');
                 }
             });

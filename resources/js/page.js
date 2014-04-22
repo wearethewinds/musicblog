@@ -23,11 +23,15 @@
           if (!reviewsReadByUser) {
               reviewsReadByUser = [];
           }
-          if ($.inArray(dbReference, reviewsReadByUser) < 0) {
-              if (reviewsReadByUser.length >= 5) { reviewsReadByUser.pop(); }
-              reviewsReadByUser.push(dbReference);
-              localStorage.setItem('reviews', JSON.stringify(reviewsReadByUser));
+          var pos = $.inArray(dbReference, reviewsReadByUser);
+          if (pos < 0) {
+              if (reviewsReadByUser.length >= 15) { reviewsReadByUser.pop(); }
+
+          } else {
+              reviewsReadByUser.splice(pos, 1);
           }
+          reviewsReadByUser.push(dbReference);
+          localStorage.setItem('reviews', JSON.stringify(reviewsReadByUser));
       }
   };
 
