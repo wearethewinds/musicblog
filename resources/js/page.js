@@ -19,12 +19,12 @@
           url = window.location.href,
           dbReference = url.split('/')[url.split('/').length - 1];
       if (localStorageAvailable) {
-          console.log(localStorage.getItem('reviews'));
           reviewsReadByUser = JSON.parse(localStorage.getItem('reviews'));
           if (!reviewsReadByUser) {
               reviewsReadByUser = [];
           }
           if ($.inArray(dbReference, reviewsReadByUser) < 0) {
+              if (reviewsReadByUser.length >= 5) { reviewsReadByUser.pop(); }
               reviewsReadByUser.push(dbReference);
               localStorage.setItem('reviews', JSON.stringify(reviewsReadByUser));
           }

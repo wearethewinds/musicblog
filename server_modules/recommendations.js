@@ -30,12 +30,14 @@ exports.getRecommendations = function(readReviews, review, callback) {
         var counter = readReviews.length ;
         for (var i = readReviews.length - 1; i >= 0; --i) {
             review.getReview(readReviews[i], function(rev) {
-                for (var j = rev.tags.length - 1; j >= 0; --j) {
-                    if (tagCloud[rev.tags[j]]) {
-                        tagCloud[rev.tags[j]] += 1;
-                    }
-                    else {
-                        tagCloud[rev.tags[j]] = 1;
+                if (Object.keys(tagCloud).length < 6) {
+                    for (var j = rev.tags.length - 1; j >= 0; --j) {
+                        if (tagCloud[rev.tags[j]]) {
+                            tagCloud[rev.tags[j]] += 1;
+                        }
+                        else {
+                            tagCloud[rev.tags[j]] = 1;
+                        }
                     }
                 }
                 --counter;
@@ -80,7 +82,9 @@ exports.getRecommendations = function(readReviews, review, callback) {
                 }
             }
             return result;
-        }(combinations);
+        }(combinations).sort(function(a, b) {
+            return b.length - a.length;
+        });
     };
 
     function toArray (obj) {
