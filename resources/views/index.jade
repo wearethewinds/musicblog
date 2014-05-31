@@ -1,38 +1,11 @@
 doctype html
 html(ng-app='musicblog')
   head
-    meta(charset='utf-8')
-    meta(name='viewport', content='width=device-width,initial-scale=1.0')
-    link(href='https://fonts.googleapis.com/css?family=Julius+Sans+One', rel='stylesheet', type='text/css')
-    link(href='https://fonts.googleapis.com/css?family=Raleway', rel='stylesheet', type='text/css')
-    link(rel='stylesheet', href='/resources/styles/css/reset.css')
-    link(rel='stylesheet', href='/resources/styles/css/pure-min.css')
-    link(rel='stylesheet', href='/resources/styles/css/styles.css')
+    include minis/headerreferences.jade
     title Some great name
   body
     #main.pure-g
-      header.pure-u-1
-        div
-          a(href='/')
-            h1 Music Review Blog
-            h2 music|coding|music|design|music
-        div.social
-          a.pure-u-1-5.socialitem(href='http://facebook.com/fabian.potschies', target='_blank')
-            div
-              img(src='/resources/images/icons/facebook.svg')
-          a.pure-u-1-5.socialitem(href='404')
-            div
-              img(src='/resources/images/icons/googleplus.svg')
-          a.pure-u-1-5.socialitem
-            div
-              img(src='/resources/images/icons/twitter.svg')
-          a.pure-u-1-5.socialitem(href='http://last.fm/user/wearethewinds', target='_blank')
-            div
-              img(src='/resources/images/icons/lastfm.svg')
-          a.github.pure-u-1-5.socialitem(href='https://github.com/wearethewinds', target='_blank')
-            div
-              img(src='/resources/images/icons/github.svg')
-              img(src='/resources/images/icons/github_open.svg')
+      include minis/header.jade
       section#new
         .fontwrapper
           .title.pure-u-1
@@ -42,41 +15,13 @@ html(ng-app='musicblog')
             img(src='#{review.record.coverlores}')
             div
               span
-                | #{review.record.artist}
+                | #{review.record.artist}&nbsp;
                 br
-                | #{review.record.title}
+                | "#{review.record.title}"
       section#recommendations
         .fontwrapper
           .title.pure-u-1
             h1 We recommend
-        a.pure-u-1-4.album(href='review')
-          img(src='resources/images/covers/5.jpg')
-          div
-            span
-              | virus
-              br
-              | "the agent that shapes the desert"
-        a.pure-u-1-4.album(href='review')
-          img(src='resources/images/covers/4.jpg')
-          div
-            span
-              | songs:ohia
-              br
-              | "magnolia electric co"
-        a.pure-u-1-4.album(href='review')
-          img(src='resources/images/covers/6.jpg')
-          div
-            span
-              | toe
-              br
-              | "for long tomorrow"
-        a.pure-u-1-4.album(href='review')
-          img(src='resources/images/covers/7.jpg')
-          div
-            span
-              | elysian blaze
-              br
-              | "blood geometry"
       section#about
         .fontwrapper
           .title.pure-u-1
@@ -99,3 +44,4 @@ html(ng-app='musicblog')
               br
               a(href='http://www.friederloch.de', target='_blank') Frieder
               | , Martin, Rafael, Manuel, Nico, Sebastian, David, Sven, Desy, Jana, Malaika
+    include minis/javascript.jade

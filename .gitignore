@@ -3,3 +3,5 @@ node_modules/*
 .idea/*
 *.iml
 data/*
+resources/images/covers/*
+dummyobject.txt

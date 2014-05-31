@@ -266,6 +266,11 @@ body {
     right:0; 
     background-color: inherit;
     text-transform: lowercase;
+    transition: @hover-animation-fadein;
+    -webkit-transition: @hover-animation-fadein;
+    -moz-transition: @hover-animation-fadein;
+    -o-transition: @hover-animation-fadein;
+    transition: @hover-animation-fadein;
   }
   
   .album > div > span{
@@ -275,10 +280,6 @@ body {
   
   .album:hover > div {
    opacity: 1;
-   transition: @hover-animation-fadein;
-     -webkit-transition: @hover-animation-fadein;
-     -moz-transition: @hover-animation-fadein;
-     -o-transition: @hover-animation-fadein;
   }
 }
 

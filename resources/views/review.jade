@@ -1,6 +1,7 @@
 doctype html
 html
   head
+<<<<<<< HEAD
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width,initial-scale=1.0')
     link(href='http://fonts.googleapis.com/css?family=Julius+Sans+One', rel='stylesheet', type='text/css')
@@ -8,38 +9,20 @@ html
     link(rel='stylesheet', href='/resources/styles/css/reset.css')
     link(rel='stylesheet', href='/resources/styles/css/pure-min.css')
     link(rel='stylesheet', href='/resources/styles/css/styles.css')
+=======
+    include minis/headerreferences.jade
+>>>>>>> 7334f0636f6b0e665cd87e1131f14e3cf13a8fb2
     title Some great name
   body
     #main.pure-g
-      header.pure-u-1
-        div
-          a(href='/')
-            h1 Music Review Blog
-            h2 music|coding|music|design|music
-        div.social
-          a.pure-u-1-5.socialitem(href='http://facebook.com/fabian.potschies', target='_blank')
-            div
-              img(src='/resources/images/icons/facebook.svg')
-          a.pure-u-1-5.socialitem
-            div
-              img(src='/resources/images/icons/twitter.svg')
-          a.pure-u-1-5.socialitem
-            div
-              img(src='/resources/images/icons/googleplus.svg')
-          a.pure-u-1-5.socialitem(href='http://last.fm/user/wearethewinds', target='_blank')
-            div
-              img(src='/resources/images/icons/lastfm.svg')
-          a.github.pure-u-1-5.socialitem(href='https://github.com/wearethewinds', target='_blank')
-            div
-              img(src='/resources/images/icons/github.svg')
-              img(src='/resources/images/icons/github_open.svg')
+      include minis/header.jade
       article#review.pure-u-2-3
         header.pure-u-23-24
-          h1.pure-u-1-2
+          h1.pure-u-3-4
             | #{review.record.artist}
             br
             | #{review.record.title}
-          time.pure-u-1-2 #{review.published}
+          time.pure-u-1-4 #{review.published}
           h2.pure-u-1-2 #{review.heading}
           #cover.pure-u-1-3
             img(src='#{review.record.coverlores}')
@@ -71,19 +54,4 @@ html
           .fontwrapper
             .title.pure-u-1
               h1 We recommend
-          a.pure-u-1-2.album.turquoise(href='/review')
-            img(src='/resources/images/covers/5.jpg')
-            div
-              span virus "the agent that shapes the desert"
-          a.pure-u-1-2.album.lightorange(href='/review')
-            img(src='/resources/images/covers/4.jpg')
-            div
-              span songs:ohia "magnolia electric co."
-          a.pure-u-1-2.album.darkorange(href='/review')
-            img(src='/resources/images/covers/6.jpg')
-            div
-              span toe "for long tomorrow"
-          a.pure-u-1-2.album.heavenblue(href='/review')
-            img(src='/resources/images/covers/7.jpg')
-            div
-              span elysian blaze "elysian blaze"
+    include minis/javascript.jade
