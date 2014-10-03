@@ -1,4 +1,4 @@
-exports.getLatestReviews = function(callback) {
+exports.getLatestReviews = function(Review, callback) {
     Review
         .find()
         .sort({'_id': -1})

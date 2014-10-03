@@ -1,6 +1,7 @@
 var express = require('express'),
 	http = require('http'),
 	port = process.env.PORT || 3000,
+    Review = false,
     latestReviews = require('./server_modules/latestreviews.js'),
     recommendations = require('./server_modules/recommendations.js'),
     review = require('./server_modules/review.js'),
@@ -60,12 +61,13 @@ app.configure(function() {
 });
 
 app.get('/', function(req, res) {
-    latestReviews.getLatestReviews(function(reviews) {
+    latestReviews.getLatestReviews(Review, function(reviews) {
         res.render('index.jade', {
             newest: reviews
         });
     });
 });
+
 app.get('/404', function(req, res) {
     res.render('404.jade');
 });
@@ -75,7 +77,7 @@ app.get('/review/:dbrefer/recommendations', function(req, res) {
     for (var key in req.query) {
         tags.push(key);
     }
-    recommendations.getRecommendations(tags, review, req.params.dbrefer, function(coll) {
+    recommendations.getRecommendations(Review, tags, review, req.params.dbrefer, function(coll) {
       res.render('minis/album.jade', {
          reviews: coll
       });
@@ -88,7 +90,7 @@ app.get('/review/recommendations', function (req, res) {
         tags.push(key);
     }
     console.log(tags);
-    recommendations.getRecommendations(tags, review, '', function(coll) {
+    recommendations.getRecommendations(Review, tags, review, '', function(coll) {
         res.render('minis/album.jade', {
             reviews: coll
         });
@@ -96,12 +98,12 @@ app.get('/review/recommendations', function (req, res) {
 });
 
 app.get('/review/:dbrefer', function(req, res) {
-    review.increaseReviewCount(req.params.dbrefer, function() {
+    review.increaseReviewCount(Review, req.params.dbrefer, function() {
 
     });
-    review.getReview(req.params.dbrefer, function(coll) {
+    review.getReview(Review, req.params.dbrefer, function(coll) {
         if (!coll) { res.render('404.jade'); }
-        latestReviews.getLatestReviews(function(reviews) {
+        latestReviews.getLatestReviews(Review, function(reviews) {
             res.render('review.jade', {
                 latestreviews: reviews,
                 review: coll

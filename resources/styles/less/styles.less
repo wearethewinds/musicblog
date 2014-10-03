@@ -82,13 +82,14 @@ body {
 
   .album > div {
     padding-left: 1em;
-    font-size: 1.3em;
+    font-size: 1em;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -ms-flexbox-sizing: border-box;
     -o-box-sizing: border-box;
     box-sizing: border-box;
     position: relative;
+    max-width: calc(~"100% - 4em");
   }
 
   .album:hover {
@@ -201,21 +202,39 @@ body {
       float: right;
       padding: 0;
       top: 5em;
+      width: 25%;
     }
   }
   .album {
     text-align: center;
-    height: 15em;
-    padding: 1.5em 0 0 0;
+    height: 12em;
+    padding: 1em 0;
+    position: relative;
     img {
-      height: 75%;
+      height: 100%;
     }
   }
-  
+
+  #rightside {
+    font-size: 1.75em;
+    padding: 0.5em 0 0 0;
+  }
+
   section > .album > div {
+    font-size: 1.3em;
+    position: absolute;
+    opacity: 0;
+    height: 100%;
+    top: 0; left: 0; bottom: 0; right: 0;
     letter-spacing: -0.05em;
     margin: 0 auto;
-    font-size: 1.1em;
+    background-color: inherit;
+    text-transform: lowercase;
+    transition: @hover-animation-fadein;
+    -webkit-transition: @hover-animation-fadein;
+    -moz-transition: @hover-animation-fadein;
+    -o-transition: @hover-animation-fadein;
+    transition: @hover-animation-fadein;
     padding: 0 1em 0 1em;
     height: auto;
     display: flex;
@@ -233,53 +252,21 @@ body {
     align-items: center;
     justify-content: center;
   }
-}
 
-@media screen and (min-width: 1200px) {
-  header {
-    .social {
-      width: 25%;
-    }
-  }
-  .album {
-    height: 12em;
-    padding: 1em 0em 1em 0em;
-    position: relative;
-    img {
-      height: 100%;
-    }
-  }
-  
-  #rightside {
-    font-size: 1.75em;
-    padding: 0.5em 0 0 0;
-  }
-
-  section > .album > div {
-    font-size: 2em;
-    position: absolute;
-    opacity: 0;
-    height: 100%;
-    top:0;
-    left:0;
-    bottom:0;
-    right:0; 
-    background-color: inherit;
-    text-transform: lowercase;
-    transition: @hover-animation-fadein;
-    -webkit-transition: @hover-animation-fadein;
-    -moz-transition: @hover-animation-fadein;
-    -o-transition: @hover-animation-fadein;
-    transition: @hover-animation-fadein;
-  }
-  
   .album > div > span{
     display: block;
     padding: 0 0.5em 0 0.5em;
   }
-  
+
   .album:hover > div {
-   opacity: 1;
+    opacity: 1;
+  }
+}
+
+
+@media screen and (min-width: 1200px) {
+  section > .album > div {
+    font-size: 2em;
   }
 }
 

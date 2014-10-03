@@ -40,7 +40,6 @@
           var pos = $.inArray(dbReference, reviewsReadByUser);
           if (pos < 0) {
               if (reviewsReadByUser.length >= 15) { reviewsReadByUser.pop(); }
-
           } else {
               reviewsReadByUser.splice(pos, 1);
           }

@@ -1,4 +1,4 @@
-exports.getRecommendations = function(readReviews, review, comingFrom, callback) {
+exports.getRecommendations = function(Review, readReviews, review, comingFrom, callback) {
     var async = require('async'),
         tagCloud = {},
         genreArray = false,
@@ -75,7 +75,7 @@ exports.getRecommendations = function(readReviews, review, comingFrom, callback)
         if (counter === 0) { return callback(null, 'one'); }
         // only the last 6 reviews are considered for the calculation
         for (var i = counter - 1; i >= 0; --i) {
-            review.getReview(readReviews[i], function(rev) {
+            review.getReview(Review, readReviews[i], function(rev) {
                 if (Object.keys(tagCloud).length < 6) {
                     for (var j = rev.tags.length - 1; j >= 0; --j) {
                         if (tagCloud[rev.tags[j]]) {
