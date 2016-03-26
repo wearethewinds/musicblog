@@ -9,7 +9,7 @@ html
         header.pure-u-23-24
           h1.pure-u-3-4
             | #{review.record.artist}
-            br
+            br.force
             | #{review.record.title}
           time.pure-u-1-4 #{review.published}
           h2.pure-u-1-2 #{review.heading}
@@ -22,13 +22,7 @@ html
           .fontwrapper
             .title.pure-u-1
               h1  #{review.comments.length} Comments
-          each comment, i in review.comments
-            article.comment
-              header
-                time #{comment.date}
-                h2 #{comment.author}
-              p
-                | #{comment.text}
+          div#comments
       section#rightside.pure-u-1-3
         section#new
           .fontwrapper

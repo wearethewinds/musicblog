@@ -1,6 +1,5 @@
 @font-julius: 'Julius Sans One', sans-serif;
 @font-raleway: 'Raleway', sans-serif;
-@font-blockquote-settings: 'Tauri', sans-serif;
 @h1-color: #7C774D;
 @h2-color: #AAAAAA;
 
@@ -8,7 +7,7 @@
 @hover-animation-album-height: height 300ms ease;
 @hover-animation-suggestion-box: height 300ms ease 200ms;
 @hover-animation-suggestion-image: left 300ms ease 450ms, width 300ms ease 200ms;
-@hover-animation-suggestion-text: padding 300ms ease 300ms;
+@hover-animation-suggestion-text: padding 300ms ease 400ms;
 @hover-animation-social-position: bottom 200ms ease;
 
 @dark-orange: #FF6600;
@@ -28,11 +27,52 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+.social {
+  text-align: right;
+}
+
+@media screen and (max-width: 1450px) {
+  #review {
+    width: 100%;
+  }
+  #rightside {
+    width: 95.833%;
+    display: flex;
+    section {
+      display: inline-block;
+      margin: 0 1em;
+      .album {
+        height: 3em;
+        font-size: .9em;
+        box-align: center;
+        align-items: center;
+        div {
+          width: 100%;
+          max-width: 100%;
+          padding: 0 .5em;
+          margin: 0;
+          display: flex;
+          align-items: center;
+        }
+      }
+      img {
+        display: none;
+      }
+    }
+    section:first-of-type {
+      margin-left: 0;
+    }
+    section:last-of-type {
+      margin-right: 0;
+    }
+  }
+}
+
 @media screen and (max-width: 999px) {
   header {
     .social {
       position: relative;
-      width: 45%;
+      width: 15em;
       padding: 0;
       float: right;
       div {
@@ -41,27 +81,42 @@ body {
     }
   }
 
- #main {
+  #main {
     width: 100%;
   }
-  
+
   br {
     display: none;
   }
-  
+
+  #rightside {
+    display: block;
+    section {
+      width: 100%;
+      margin: 0;
+      .album {
+        height: 2.3em;
+        font-size: 1.15em;
+      }
+      &:last-of-type {
+        margin-top: 1em;
+      }
+    }
+  }
+
   .album {
     width: 100%;
     height: 4em;
     display: box;
-      display: -webkit-box;
-      display: flex;
-      display: -ms-flexbox;
-      justify-content: flex-start;
-      align-items: center;
+    display: -webkit-box;
+    display: flex;
+    display: -ms-flexbox;
+    justify-content: flex-start;
+    align-items: center;
     box-align: center;
-      -webkit-box-align: center;
-      -moz-box-align: center;
-      -ms-flex-align: center;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
     -webkit-transition: @hover-animation-album-height;
     -moz-transition: @hover-animation-album-height;
     -ms-transition: @hover-animation-album-height;
@@ -82,7 +137,7 @@ body {
 
   .album > div {
     padding-left: 1em;
-    font-size: 1em;
+    font-size: 1.2em;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -ms-flexbox-sizing: border-box;
@@ -90,6 +145,7 @@ body {
     box-sizing: border-box;
     position: relative;
     max-width: calc(~"100% - 4em");
+
   }
 
   .album:hover {
@@ -106,28 +162,28 @@ body {
       width: 100%;
       position: relative;
       h1 {
-        font-size: 1.3em;
+        font-size: 1.6em;
         padding: 0 0 0 0.2em;
         margin: .67em 0;
       }
     }
   }
 
-  
+
   #about {
     div {
-      width: 100%; 
+      width: 100%;
       display: table;
     }
   }
-  
+
   #review {
-    width: 100%; 
+    width: 100%;
     p {
       padding: 0;
     }
   }
-  
+
   #box404 {
     .heightwrapper div {
       font-size: 2em;
@@ -140,6 +196,11 @@ body {
 }
 
 @media screen and (min-width: 500px) {
+  #review header {
+    time {
+      font-size: 2.7em;
+    }
+  }
   #main {
     width: 95%;
     margin: 0 0 0 0;
@@ -158,25 +219,17 @@ body {
   
   #review {
     font-size: 0.8em;
-    header {
-      time {
-        font-size: 3em;
-      }
+  }
+
+  header {
+    time {
+      font-size: 3em;
     }
   }
   
   #rightside .album > div {
     div {
       font-size: 1em;
-    }
-  }
-
-  .comment {
-    &:nth-of-type(even) {
-      background-color: @light-orange;
-    }
-    &:nth-of-type(odd) {
-      background-color: @turquoise;
     }
   }
   
@@ -198,10 +251,9 @@ body {
     }
     .social {
       position: relative;
-      width: 30%;
       float: right;
       padding: 0;
-      top: 5em;
+      top: 6em;
       width: 25%;
     }
   }
@@ -229,7 +281,6 @@ body {
     letter-spacing: -0.05em;
     margin: 0 auto;
     background-color: inherit;
-    text-transform: lowercase;
     transition: @hover-animation-fadein;
     -webkit-transition: @hover-animation-fadein;
     -moz-transition: @hover-animation-fadein;
@@ -265,9 +316,7 @@ body {
 
 
 @media screen and (min-width: 1200px) {
-  section > .album > div {
-    font-size: 2em;
-  }
+
 }
 
 @media screen and (min-width: 1300px) {
@@ -290,6 +339,29 @@ body {
   .album {
     height: 17em;
   }
+
+  section > .album > div {
+    font-size: 2em;
+  }
+
+  #rightside > section > .album {
+
+    height: 2.5em;
+    font-size: .9em;
+    &.album:hover {
+      height: 3.5em;
+      div {
+        padding-left: 5em;
+        padding-right: 1em;
+      }
+      img {
+        left: 0;
+        width: 3.5em;
+      }
+    }
+
+  }
+
 }
 
 body {
@@ -315,7 +387,7 @@ header {
     top: -0.3em;
     color: @color-white;
     opacity: 0.4;
-    font-size: 3.8em;
+    font-size: 2em;
   }
   div {
     padding-bottom: 1em;
@@ -378,8 +450,16 @@ section {
   background-color: @heaven-blue;
 }
 
+.heavenblue-text {
+  background-color: lighten(@heaven-blue, 20%);
+}
+
 .lightorange {
   background-color: @light-orange;
+}
+
+.lightorange-text {
+  background-color: lighten(@light-orange, 20%);
 }
 
 .turquoise {
@@ -427,6 +507,7 @@ section {
   h2 {
     color: #FFF;
     padding: 0 1rem 0 1rem;
+    font-family: @font-raleway !important;;
   }
   p {
     font-family: @font-raleway;
@@ -438,7 +519,8 @@ section {
     color: #FFF;
     -webkit-transition: text-shadow 500ms ease;
     &:hover {
-      text-shadow: 7px 6px rgba(255, 255, 255, 0.3);
+      xtext-shadow: 7px 6px rgba(255, 255, 255, 0.3);
+      -webkit-animation: shaketext .3s linear infinite;
     }
   }
 }
@@ -448,6 +530,7 @@ section {
     display: -webkit-flex;
     display: -moz-flex;
     display: -ms-flexbox;
+  flex-direction: column;
 }
 
 a {
@@ -457,6 +540,7 @@ a {
 .album > div {
   color: @color-white;
   font-family: @font-raleway;
+  text-transform: lowercase;
   div {
     width: 100%;
     height: 100%;
@@ -519,9 +603,7 @@ a {
 #rightside > section > .album {
   width: 100%;
   text-align: left;
-  height: 2em;
   padding: 0;
-  font-size: 0.9em;
   overflow: hidden;
   -webkit-transition: @hover-animation-suggestion-box;
   -moz-transition: @hover-animation-suggestion-box;
@@ -529,8 +611,8 @@ a {
   -o-transition: @hover-animation-suggestion-box;
   transition: @hover-animation-suggestion-box;
   img {
-    width: 2em;
-    height: auto;
+    width: auto;
+    height: 100%;
     float: left;
     position: absolute;
     left: -3.5em;
@@ -543,24 +625,8 @@ a {
   }
 }
 
-#rightside > section > .album:hover {
-  height: 3.5em;
-  div {
-    padding-left: 5em;
-    padding-right: 1em;
-  }
-  img {
-    left: 0;
-    width: 3.5em;
-  }
-}
-
 #rightside > section > .album > div {
   position: relative;
-  width: auto;
-  padding-left: 1em;
-  padding-right: 5em;
-  margin: 0;
   height: 100%;
   font-size: 0.86em;
   opacity: 1;
@@ -582,6 +648,12 @@ a {
 .comment {
   padding: 1em;
   font-family: @font-raleway;
+  &:nth-of-type(even) {
+    background-color: @light-orange;
+  }
+  &:nth-of-type(odd) {
+    background-color: @turquoise;
+  }
 }
 
 h2 {
@@ -660,5 +732,18 @@ h2 {
   }
   &:nth-of-type(4) {
     background-color: @dark-orange;
+  }
+}
+
+br.force {
+  display: block;
+}
+
+@-webkit-keyframes shaketext {
+  0% {
+    text-shadow: -2px -2px rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    text-shadow: 2px 2px rgba(255, 255, 255, 0.4);
   }
 }

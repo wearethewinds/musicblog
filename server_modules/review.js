@@ -1,7 +1,9 @@
 exports.getReview = function(Review, dbrefer, callback) {
-    Review.findOne({dbrefer: dbrefer}, function(err, review) {
-        callback(review);
-    });
+    Review
+        .findOne({dbrefer: dbrefer})
+        .then(function (rev) {
+            callback(rev);
+        });
 };
 
 exports.increaseReviewCount = function(Review, dbrefer, callback) {

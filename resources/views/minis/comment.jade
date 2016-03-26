@@ -1,0 +1,6 @@
+article.comment(class='#{comment.slug}')
+    header
+        time #{comment.posted}
+        h2 #{comment.author}
+    p
+        | #{comment.text}

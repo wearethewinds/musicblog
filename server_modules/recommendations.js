@@ -14,6 +14,7 @@ exports.getRecommendations = function(Review, readReviews, review, comingFrom, c
             findReviewsByGenreTags(callback);
         },
         function (callback) {
+            console.log('fill');
             fillUpReviews(callback);
         }], function () {
             callback(recommendedReviews);
@@ -28,7 +29,8 @@ exports.getRecommendations = function(Review, readReviews, review, comingFrom, c
             Review
                 .find({tags: {$in: genreArray[i]}})
                 .limit(4)
-                .exec(function(err, reviews) {
+                .toArray()
+                .then(function(reviews) {
                     if (reviews) {
                         for (var j = reviews.length - 1; j >= 0; --j) {
                             if (readReviews.indexOf(reviews[j].dbrefer) >= 0 ||
@@ -57,7 +59,8 @@ exports.getRecommendations = function(Review, readReviews, review, comingFrom, c
             .find({dbrefer: {$ne: comingFrom, $nin: addedReviews}})
                 .sort({'accessCount': -1})
             .limit(4 - recommendedReviews.length)
-            .exec(function(err, reviews) {
+            .toArray()
+            .then(function(reviews) {
                 if (!reviews) {
                     callback(null, 'three')
                     return;
@@ -75,7 +78,8 @@ exports.getRecommendations = function(Review, readReviews, review, comingFrom, c
         if (counter === 0) { return callback(null, 'one'); }
         // only the last 6 reviews are considered for the calculation
         for (var i = counter - 1; i >= 0; --i) {
-            review.getReview(Review, readReviews[i], function(rev) {
+            var readReview = readReviews[i];
+            review.getReview(Review, readReview, function(rev) {
                 if (Object.keys(tagCloud).length < 6) {
                     for (var j = rev.tags.length - 1; j >= 0; --j) {
                         if (tagCloud[rev.tags[j]]) {
