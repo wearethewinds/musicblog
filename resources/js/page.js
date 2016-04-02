@@ -109,7 +109,6 @@
         for (var i = arr.length - 1; i >= 0; --i) {
             assocArr[arr[i]] = 1;
         }
-        console.log(assocArr);
         return assocArr;
     };
 }(jQuery));

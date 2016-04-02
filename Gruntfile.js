@@ -13,12 +13,8 @@ module.exports = function(grunt) {
                 }
             }
         },
-        uglify: {
-            development: {
-                files: {
-                    'resources/js/page.min.js': ['resources/js/page.js']
-                }
-            }
+        browserify: {
+            'resources/js/app.js': ['resources/js/app/app.js']
         },
         watch: {
             styles: {
@@ -29,9 +25,9 @@ module.exports = function(grunt) {
                     nospawn: true
                 }
             },
-            minify: {
-                files: ['resources/js/page.js'],
-                tasks: ['uglify'],
+            browserify: {
+                files: ['resources/js/app/**/*.js'],
+                tasks: ['browserify'],
                 options: {
                     nospawn: true
                 }
@@ -40,6 +36,6 @@ module.exports = function(grunt) {
     });
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-browserify');
     grunt.registerTask('default', ['watch']);
 };

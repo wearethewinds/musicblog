@@ -6,22 +6,16 @@ html(ng-app='musicblog')
   body
     #main.pure-g
       include minis/header.jade
-      section#new
+      section#new(ng-controller='NewReviewsController')
         .fontwrapper
           .title.pure-u-1
             h1 Latest reviews
-        each review, i in newest
-          a.pure-u-1-4.album(href='/review/#{review.dbrefer}')
-            img(src='#{review.record.coverlores}')
-            div
-              span
-                | #{review.record.artist}&nbsp;
-                br
-                | "#{review.record.title}"
-      section#recommendations
+        review-link(ng-repeat="review in latestReviews")
+      section#recommendations(ng-controller='RecommendationsController')
         .fontwrapper
           .title.pure-u-1
             h1 We recommend
+        review-link(ng-repeat="review in recommendedReviews")
       section#about
         .fontwrapper
           .title.pure-u-1
