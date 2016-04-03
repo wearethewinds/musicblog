@@ -20,6 +20,7 @@ mongo.connect(url, function (err, db) {
 });
 
 var app = express();
+app.use(express.bodyParser());
 app.configure(function () {
     app.set('views', __dirname + '/resources/views')
         .set('view engine', 'jade')
@@ -72,12 +73,12 @@ app.get('/review/:dbrefer', function (req, res) {
     review.increaseReviewCount(mongoDb.collection('Review'), req.params.dbrefer, function () {
 
     });
-    review.getReview(mongoDb.collection('Review'), req.params.dbrefer, function (coll) {
-        if (!coll) {
+    review.getReview(mongoDb.collection('Review'), req.params.dbrefer, function (review) {
+        if (!review) {
             res.render('404.jade');
         }
         res.render('review.jade', {
-            review: coll
+            review: review
         });
     });
 });
@@ -89,18 +90,14 @@ app.get('/review/:dbrefer/comments', function (req, res) {
             comment.posted = moment(new Date(comment.posted)).format('LLL');
             return comment;
         });
-        res.render('minis/comments.jade', {
-            comments: comments
-        });
+        res.json(comments);
     });
 });
 
 app.post('/review/:dbrefer/comments', function (req, res) {
-    comments.setComment(mongoDb.collection('Comment'), req.params.dbrefer, null, function (comment) {
+    comments.setComment(mongoDb.collection('Comment'), req.params.dbrefer, req.body.name, req.body.text, null, function (comment) {
         comment.posted = moment(new Date(comment.posted)).format('LLL');
-        res.render('minis/comment.jade', {
-            comment: comment
-        })
+        res.json(comment);
     });
 });
 

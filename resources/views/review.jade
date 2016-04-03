@@ -3,7 +3,7 @@ html(ng-app="musicblog")
   head
     include minis/headerreferences.jade
   body
-    #main.pure-g(ng-controller="ReviewController")(ng-init="dbrefer='"+review.dbrefer+"'")
+    #main.pure-g(ng-controller="ReviewController", ng-init="dbrefer='"+review.dbrefer+"'")
       include minis/header.jade
       article#review.pure-u-2-3
         header.pure-u-23-24
@@ -18,11 +18,13 @@ html(ng-app="musicblog")
         each paragraph, i in review.reviewtext
           p
             | #{paragraph.paragraph}
-        section#commentary.pure-u-23-24
+        section#commentary.pure-u-23-24(ng-controller='CommentsController')
           .fontwrapper
             .title.pure-u-1
-              h1  #{review.comments.length} Comments
+              h1  {{comments.length}} Comments
           div#comments
+            new-comment(dbrefer="{{dbrefer}}", comments="comments")
+            comment(ng-repeat="comment in comments")
       section#rightside.pure-u-1-3
         section#new(ng-controller="NewReviewsController")
           .fontwrapper
