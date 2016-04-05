@@ -102,7 +102,11 @@ app.post('/review/:dbrefer/comments', function (req, res) {
 });
 
 app.post('/review/:dbrefer/comments/:commentId', function (req, res) {
-
+    console.log(req.params);
+    comments.setComment(mongoDb.collection('Comment'), req.params.dbrefer, req.body.name, req.body.text, req.params.commentId, function (comment) {
+       comment.posted = moment(new Date(comment.posted)).format('LLL');
+        res.json(comment);
+    });
 });
 
 http.createServer(app).listen(port);

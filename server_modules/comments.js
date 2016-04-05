@@ -5,7 +5,7 @@ var moment = require('moment');
 var getComments = function (Comment, dbRefer, callback) {
     Comment
         .find({'dbrefer': dbRefer})
-        .sort([['posted', 'desc']])
+        .sort([['full_slug', 'desc']])
         .toArray()
         .then(function (coll) {
            if (typeof callback === 'function') {
@@ -13,7 +13,7 @@ var getComments = function (Comment, dbRefer, callback) {
            }
         });
 };
-var setComment = function (Comment, dbRefer, name, text, commentRefer, callback) {
+var prepareComment = function (Comment, dbRefer, name, text, commentRefer, callback) {
     var now = new Date();
     var slug = uuid.v4();
     var fullSlug = moment(now).format() + ':' + slug;
@@ -22,14 +22,23 @@ var setComment = function (Comment, dbRefer, name, text, commentRefer, callback)
             'dbrefer': dbRefer,
             'slug': commentRefer
         });
-        slug = parent['slug'] + '/' + slug;
-        fullSlug = parent['full_slug'] + '/' + fullSlug;
+        parent.then(function (parentComment) {
+            slug = parentComment['slug'] + '/' + slug;
+            fullSlug = parentComment['full_slug'] + '/' + fullSlug;
+            setComment(Comment, dbRefer, slug, fullSlug, now, name, text, callback);
+        });
+        return;
     }
+    setComment(Comment, dbRefer, slug, fullSlug, now, name, text, callback);
+
+};
+
+var setComment = function (Comment, dbRefer, slug, fullSlug, date, name, text, callback) {
     var comment = {
         'dbrefer': dbRefer,
         'slug': slug,
         'full_slug': fullSlug,
-        'posted': now,
+        'posted': date,
         'author': name || '',
         'text': text || ''
     }
@@ -40,5 +49,5 @@ var setComment = function (Comment, dbRefer, name, text, commentRefer, callback)
 
 assign(exports, {
     getComments: getComments,
-    setComment: setComment
+    setComment: prepareComment
 });
