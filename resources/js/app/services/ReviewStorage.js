@@ -37,7 +37,7 @@ module.exports = function ($localStorage) {
             $localStorage.reviews = JSON.stringify(reviewsReadByUser);
         },
         getReadReviews: function () {
-            return arrayToObject(JSON.parse($localStorage.reviews));
+            return arrayToObject(JSON.parse($localStorage.reviews || '[]'));
         }
     };
 
