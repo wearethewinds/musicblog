@@ -656,6 +656,11 @@ a {
   overflow: hidden;
   max-height: 500px;
   transition: max-height 450ms ease, opacity 350ms ease-in-out 100ms, padding 150ms ease 300ms;
+  .new-comment {
+    opacity: 0;
+    max-height: 0;
+    transition: max-height 450ms ease, opacity 350ms ease-in-out 100ms;
+  }
   &:nth-of-type(even) {
     background-color: @light-orange;
   }
