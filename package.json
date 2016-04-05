@@ -23,11 +23,25 @@
     "url": "https://github.com/wearethewinds/musicblog"
   },
   "devDependencies": {
+    "angular-mocks": "^1.5.3",
+    "babelify": "^7.2.0",
+    "browserify-shim": "^3.8.12",
     "grunt": "~0.4.1",
     "grunt-browserify": "^5.0.0",
     "grunt-contrib-less": "~0.5.0",
     "grunt-contrib-uglify": "~0.4.0",
-    "grunt-contrib-watch": "~0.4.0"
+    "grunt-contrib-watch": "~0.4.0",
+    "grunt-karma": "^0.12.2",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.22",
+    "karma-browserify": "^5.0.3",
+    "karma-chrome-launcher": "^0.2.3",
+    "karma-jasmine": "^0.3.8",
+    "karma-ng-html2js-preprocessor": "^0.2.1",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-requirejs": "^0.2.6",
+    "karma-script-launcher": "^0.2.0",
+    "stringify": "^5.1.0"
   },
   "author": "wearethewinds",
   "license": "MIT"
