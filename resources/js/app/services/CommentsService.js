@@ -32,13 +32,10 @@ module.exports = function ($http, WorkerService) {
             });
         },
 
-        aggregateComments: function (comments) {
+        aggregateComments: function (comments, callback) {
             var worker = WorkerService.createWorker(require('../worker/AggregateComments'));
             worker.addEventListener('message', function (res) {
-                console.log(res);
-            })
-            worker.addEventListener('error', function () {
-               console.log(arguments);
+                callback(res.data);
             });
             worker.postMessage(comments);
         }

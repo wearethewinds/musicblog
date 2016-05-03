@@ -4,7 +4,6 @@ module.exports = function () {
         comments.data.forEach(function (comment) {
             var slugArray = comment.slug.split('/'),
                 slug = slugArray.shift();
-            console.log(slugArray, slug);
             if (slugArray.length === 0) {
                 if (!aggregatedComments[slug]) {
                     aggregatedComments[slug] = {};
@@ -17,7 +16,7 @@ module.exports = function () {
                 addToLayer(slugArray, aggregatedComments[slug], comment);
             }
         });
-        self.postMessage(aggregatedComments);
+        self.postMessage(objectToArray(aggregatedComments));
     });
 
     function addToLayer(slugArray, layer, comment) {
@@ -35,6 +34,17 @@ module.exports = function () {
         }
         console.log(layer);
         addToLayer(slugArray, layer.children[slug], comment);
-    }   
+    }
+
+    function objectToArray(aggregatedComments) {
+        return Object.keys(aggregatedComments).map(slug => {
+            console.log(slug);
+            if (aggregatedComments[slug].hasOwnProperty('children')) {
+                aggregatedComments[slug]['children'] = objectToArray(aggregatedComments[slug]['children']);
+            }
+            console.log(aggregatedComments[slug]);
+            return aggregatedComments[slug];
+        });
+    }
 };
 

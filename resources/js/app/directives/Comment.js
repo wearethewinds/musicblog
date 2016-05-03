@@ -6,9 +6,20 @@ module.exports = function ($compile) {
       template: '<article class="comment {{comment.slug}}"><header><time>{{comment.posted}}</time><h2>{{comment.author}}</h2></header><p>{{comment.text}}</p><p><a class="comment-response">Respond</a></p><new-comment dbrefer="{{comment.dbrefer}}" comments="comments" slug="{{comment.slug}}"></new-comment></article>',
       link: function(scope, element) {
           element.find('.comment-response').on('click', function () {
-              console.log('here');
              element.find('.new-comment').css({'max-height': '500px', 'opacity': 1});
           });
+          if (Array.isArray(scope.comment.children)) {
+              var comments = scope.comment.children.map(comment => {
+                  var newScope = scope.$new();
+                  newScope.comment = comment;
+                 return $compile('<comment dbrefer="' + comment.dbrefer + '" comments={{comments}}/>')(newScope, (cloned, scope) => {
+                     element.append(cloned);
+                 });
+              });
+              console.log(comments);
+              //element.append(comments.join(''));
+
+          }
       }
   }
 };
