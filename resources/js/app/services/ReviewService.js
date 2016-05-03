@@ -17,7 +17,6 @@ module.exports = function ($http, ReviewStorage) {
             } else {
                 dbRefer = '';
             }
-            console.log(ReviewStorage.getReadReviews());
             return $http({
                 method: 'GET',
                 url: '/review/' + dbRefer + 'recommendations',

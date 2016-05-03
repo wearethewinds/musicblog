@@ -16,8 +16,6 @@ module.exports = function ($compile) {
                      element.append(cloned);
                  });
               });
-              console.log(comments);
-              //element.append(comments.join(''));
 
           }
       }

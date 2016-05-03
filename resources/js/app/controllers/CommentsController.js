@@ -8,7 +8,6 @@ module.exports = function ($scope, CommentsService) {
             CommentsService.aggregateComments(comments.data, function (aggegratedComments) {
                 $scope.comments = aggegratedComments;
                 $scope.$apply();
-                console.log($scope.comments);
             });
             listener();
         });

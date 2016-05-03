@@ -15,12 +15,10 @@ module.exports = function ($localStorage) {
 
     return {
         setReview: function (item) {
-            console.log(item);
             var reviewsReadByUser = null;
             try {
                 reviewsReadByUser = JSON.parse($localStorage.reviews);
             } catch (e) {}
-            console.log(reviewsReadByUser);
             if (!reviewsReadByUser) {
                 reviewsReadByUser = [];
             }
@@ -33,7 +31,6 @@ module.exports = function ($localStorage) {
                 reviewsReadByUser.splice(pos, 1);
             }
             reviewsReadByUser.push(item);
-            console.log(reviewsReadByUser);
             $localStorage.reviews = JSON.stringify(reviewsReadByUser);
         },
         getReadReviews: function () {

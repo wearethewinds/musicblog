@@ -21,7 +21,6 @@ module.exports = function () {
 
     function addToLayer(slugArray, layer, comment) {
         var slug = slugArray.shift();
-        console.log(layer);
         if (!layer.children) {
             layer.children = {};
         }
@@ -32,17 +31,14 @@ module.exports = function () {
         if (!layer.children[slug]) {
             layer.children[slug] = {};
         }
-        console.log(layer);
         addToLayer(slugArray, layer.children[slug], comment);
     }
 
     function objectToArray(aggregatedComments) {
         return Object.keys(aggregatedComments).map(slug => {
-            console.log(slug);
             if (aggregatedComments[slug].hasOwnProperty('children')) {
                 aggregatedComments[slug]['children'] = objectToArray(aggregatedComments[slug]['children']);
             }
-            console.log(aggregatedComments[slug]);
             return aggregatedComments[slug];
         });
     }
