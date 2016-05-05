@@ -20,7 +20,6 @@
         }));
 
         it('should map the comment correctly', function () {
-            console.log(element);
             expect(element.hasClass(element.scope().comment.slug)).toBe(true);
             expect(element.find('h2').html()).toBe('56');
             expect(element.find('p').html()).toBe('56');
@@ -31,11 +30,10 @@
             expect(element.find('article').hasClass('new-comment')).toBe(true);
          });
 
-         it('should unhide the new-comment section by clicking on "Respond"', function () {
+         xit('should unhide the new-comment section by clicking on "Respond"', function () {
             var link = element.find('a');
              link.click();
              scope.$digest();
-             console.log(element.find('article'));
          });
     });
 
