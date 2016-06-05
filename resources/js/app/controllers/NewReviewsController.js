@@ -4,7 +4,7 @@ module.exports = function ($scope, ReviewService) {
 
     $scope.latestReviews = [];
 
-    ReviewService.getLatestReviews().then(function (response) {
+    ReviewService.getLatestReviews().then((response) => {
        $scope.latestReviews = response.data;
     });
 

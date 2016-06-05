@@ -1,8 +1,10 @@
+'use strict';
+
 module.exports = function () {
-    self.addEventListener('message', function (comments) {
-        var aggregatedComments = {};
-        comments.data.forEach(function (comment) {
-            var slugArray = comment.slug.split('/'),
+    self.addEventListener('message', (comments) => {
+        let aggregatedComments = {};
+        comments.data.forEach((comment) => {
+            let slugArray = comment.slug.split('|'),
                 slug = slugArray.shift();
             if (slugArray.length === 0) {
                 if (!aggregatedComments[slug]) {
@@ -19,22 +21,23 @@ module.exports = function () {
         self.postMessage(objectToArray(aggregatedComments));
     });
 
-    function addToLayer(slugArray, layer, comment) {
-        var slug = slugArray.shift();
+    var addToLayer = (slugArray, layer, comment) => {
+        let slug = slugArray.shift();
+        console.log(layer, slug);
         if (!layer.children) {
             layer.children = {};
-        }
-        if (slugArray.length === 0) {
-            layer.children[slug] = comment;
-            return;
         }
         if (!layer.children[slug]) {
             layer.children[slug] = {};
         }
+        if (slugArray.length === 0) {
+            layer.children[slug] = Object.assign(layer.children[slug], comment);
+            return;
+        }
         addToLayer(slugArray, layer.children[slug], comment);
-    }
+    };
 
-    function objectToArray(aggregatedComments) {
+    var objectToArray = (aggregatedComments) => {
         return Object.keys(aggregatedComments).map(slug => {
             if (aggregatedComments[slug].hasOwnProperty('children')) {
                 aggregatedComments[slug]['children'] = objectToArray(aggregatedComments[slug]['children']);
@@ -43,4 +46,3 @@ module.exports = function () {
         });
     }
 };
-

@@ -1,32 +1,38 @@
-describe('A ReviewLink', () => {
+'use strict';
 
-    let element, scope;
+(() => {
 
-    beforeEach(angular.mock.module('musicblog'));
+    describe('A ReviewLink', () => {
 
-    beforeEach(inject(function (_$rootScope_, _$compile_) {
-        let $rootScope = _$rootScope_,
-            $compile = _$compile_;
+        let element, scope;
 
-        scope = $rootScope.$new();
-        scope.review = {
-            dbrefer: 'test',
-            record: {
-                coverlores: 'abc',
-                artist: 'artist',
-                title: 'title'
-            }
-        };
+        beforeEach(angular.mock.module('musicblog'));
 
-        element = angular.element('<review-link></review-link>');
-        $compile(element)(scope);
-        scope.$digest();
-    }));
+        beforeEach(inject(function (_$rootScope_, _$compile_) {
+            let $rootScope = _$rootScope_,
+                $compile = _$compile_;
 
-    it('should map the review-object correctly', () => {
-        expect(element.prop('tagName')).toBe('A');
-        expect(element.attr('href')).toBe('/review/test');
-        expect(element.find('img').attr('src')).toBe('abc');
-        expect(element.find('span')[0].innerHTML).toBe('artist<br>title');
+            scope = $rootScope.$new();
+            scope.review = {
+                dbrefer: 'test',
+                record: {
+                    coverlores: 'abc',
+                    artist: 'artist',
+                    title: 'title'
+                }
+            };
+
+            element = angular.element('<review-link></review-link>');
+            $compile(element)(scope);
+            scope.$digest();
+        }));
+
+        it('should map the review-object correctly', () => {
+            expect(element.prop('tagName')).toBe('A');
+            expect(element.attr('href')).toBe('/review/test');
+            expect(element.find('img').attr('src')).toBe('abc');
+            expect(element.find('span')[0].innerHTML).toBe('artist<br>title');
+        });
     });
-});
+
+})();

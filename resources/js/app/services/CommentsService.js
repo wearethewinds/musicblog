@@ -4,7 +4,7 @@ module.exports = function ($http, WorkerService) {
 
     return {
 
-        getComments: function (dbrefer) {
+        getComments: (dbrefer) => {
             if (!dbrefer) {
                 return [];
             }
@@ -14,11 +14,11 @@ module.exports = function ($http, WorkerService) {
             });
         },
 
-        addComment: function (dbrefer, name, text, commentrefer) {
+        addComment: (dbrefer, name, text, commentrefer) => {
             if (!dbrefer) {
                 return;
             }
-            var suffix = '';
+            let suffix = '';
             if (commentrefer) {
                 suffix = '/' + commentrefer;
             }
@@ -32,9 +32,9 @@ module.exports = function ($http, WorkerService) {
             });
         },
 
-        aggregateComments: function (comments, callback) {
-            var worker = WorkerService.createWorker(require('../worker/AggregateComments'));
-            worker.addEventListener('message', function (res) {
+        aggregateComments: (comments, callback) => {
+            let worker = WorkerService.createWorker(require('../worker/AggregateComments'));
+            worker.addEventListener('message', (res) => {
                 callback(res.data);
             });
             worker.postMessage(comments);

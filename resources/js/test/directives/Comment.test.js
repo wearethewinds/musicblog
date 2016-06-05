@@ -1,5 +1,7 @@
+'use strict';
+
 (function () {
-     describe('A Comment', () => {
+    describe('A Comment', () => {
 
         let element, scope;
 
@@ -25,16 +27,25 @@
             expect(element.find('p').html()).toBe('56');
         });
 
-         it('should render an additional new-comment section (which is hidden by default', function () {
+        it('should render an additional new-comment section (which is hidden by default', function () {
             expect(element.find('article').length).toBeGreaterThan(0);
             expect(element.find('article').hasClass('new-comment')).toBe(true);
-         });
+        });
 
-         xit('should unhide the new-comment section by clicking on "Respond"', function () {
-            var link = element.find('a');
-             link.click();
-             scope.$digest();
-         });
+        xit('should unhide the new-comment section by clicking on "Respond"', function () {
+            var link = element.find('.comment-response');
+            let e = new MouseEvent('click', {
+                bubbles: true,
+                cancelable: true,
+                view: window
+            });
+            var newComment = element.find('article');
+            link[0].dispatchEvent(e);
+            scope.$digest();
+            console.log(element.css('opacity'));
+            console.log(window.getComputedStyle(newComment[0])['opacity']);
+            console.log(element.attr(''));
+        });
     });
 
     var getComments = function () {

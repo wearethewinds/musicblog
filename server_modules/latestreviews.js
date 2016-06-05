@@ -1,4 +1,6 @@
-exports.getLatestReviews = function(Review, callback) {
+'use strict';
+
+exports.getLatestReviews = (Review, callback)  => {
     callback(Review
         .find()
         .sort({'_id': -1})

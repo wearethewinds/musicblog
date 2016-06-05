@@ -4,14 +4,14 @@ module.exports = function ($http, ReviewStorage) {
 
     return {
 
-        getLatestReviews: function () {
+        getLatestReviews: () => {
           return $http({
               method: 'GET',
               'url': '/review/latest'
           });
         },
         
-        getRecommendedReviews: function(dbRefer) {
+        getRecommendedReviews: (dbRefer) => {
             if (dbRefer && dbRefer[0] !== '/') {
                 dbRefer += '/';
             } else {

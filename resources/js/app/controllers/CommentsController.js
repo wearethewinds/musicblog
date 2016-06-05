@@ -3,9 +3,9 @@
 module.exports = function ($scope, CommentsService) {
 
     $scope.comments = [];
-    var listener = $scope.$watch('dbrefer', function () {
-        CommentsService.getComments($scope.dbrefer).then(function (comments) {
-            CommentsService.aggregateComments(comments.data, function (aggegratedComments) {
+    let listener = $scope.$watch('dbrefer', () => {
+        CommentsService.getComments($scope.dbrefer).then((comments) => {
+            CommentsService.aggregateComments(comments.data, (aggegratedComments) => {
                 $scope.comments = aggegratedComments;
                 $scope.$apply();
             });

@@ -1,4 +1,6 @@
-var express = require('express'),
+'use strict';
+
+let express = require('express'),
     http = require('http'),
     port = process.env.PORT || 3000,
     Review = false,
@@ -11,17 +13,17 @@ var express = require('express'),
     assert = require('assert'),
     mongoDb = null;
 
-var url = 'mongodb://localhost:27017/musicblog';
+const url = 'mongodb://localhost:27017/musicblog';
 
-mongo.connect(url, function (err, db) {
+mongo.connect(url, (err, db) => {
     assert.equal(null, err);
     console.log('db running');
     mongoDb = db;
 });
 
-var app = express();
+let app = express();
 app.use(express.bodyParser());
-app.configure(function () {
+app.configure(() => {
     app.set('views', __dirname + '/resources/views')
         .set('view engine', 'jade')
         .use("/resources", express.static(__dirname + '/resources'))
@@ -29,54 +31,53 @@ app.configure(function () {
         .use(app.router);
 });
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
     res.render('index.jade');
 });
 
-app.get('/404', function (req, res) {
+app.get('/404', (req, res) => {
     res.render('404.jade');
 });
 
-app.get('/review/:dbrefer/recommendations', function (req, res) {
-    var tags = [];
-    for (var key in req.query) {
+app.get('/review/:dbrefer/recommendations', (req, res) => {
+    let tags = [];
+    for (let key in req.query) {
         if (Object.prototype.hasOwnProperty.call(req.query, key) && key !== '__proto__') {
             tags.push(key);
         }
     }
-    recommendations.getRecommendations(mongoDb.collection('Review'), tags, review, req.params.dbrefer, function (coll) {
+    recommendations.getRecommendations(mongoDb.collection('Review'), tags, review, req.params.dbrefer, (coll) => {
         res.json(coll);
     });
 });
 
-app.get('/review/recommendations', function (req, res) {
-    var tags = [];
-    for (var key in req.query) {
+app.get('/review/recommendations', (req, res) => {
+    let tags = [];
+    for (let key in req.query) {
         if (Object.prototype.hasOwnProperty.call(req.query, key) && key !== '__proto__') {
             tags.push(key);
         }
     }
-    recommendations.getRecommendations(mongoDb.collection('Review'), tags, review, '', function (coll) {
+    recommendations.getRecommendations(mongoDb.collection('Review'), tags, review, '', (coll) => {
         res.json(coll);
     });
 });
 
-app.get('/review/latest', function (req, res) {
-    latestReviews.getLatestReviews(mongoDb.collection('Review'), function (promise) {
-        promise.then(function (reviews) {
+app.get('/review/latest', (req, res) => {
+    latestReviews.getLatestReviews(mongoDb.collection('Review'), (promise) => {
+        promise.then((reviews) => {
             res.json(reviews);
         });
     });
 });
 
-app.get('/review/:dbrefer', function (req, res) {
-    review.increaseReviewCount(mongoDb.collection('Review'), req.params.dbrefer, function () {
-
-    });
-    review.getReview(mongoDb.collection('Review'), req.params.dbrefer, function (review) {
+app.get('/review/:dbrefer', (req, res) => {
+    review.increaseReviewCount(mongoDb.collection('Review'), req.params.dbrefer);
+    review.getReview(mongoDb.collection('Review'), req.params.dbrefer, (review) => {
         if (!review) {
             res.render('404.jade');
         }
+        console.log(review);
         res.render('review.jade', {
             review: review
         });
@@ -84,9 +85,9 @@ app.get('/review/:dbrefer', function (req, res) {
 });
 
 
-app.get('/review/:dbrefer/comments', function (req, res) {
-    comments.getComments(mongoDb.collection('Comment'), req.params.dbrefer, function (comments) {
-        comments.map(function (comment) {
+app.get('/review/:dbrefer/comments', (req, res) => {
+    comments.getComments(mongoDb.collection('Comment'), req.params.dbrefer, (comments) => {
+        comments.map((comment) => {
             comment.posted = moment(new Date(comment.posted)).format('LLL');
             return comment;
         });
@@ -94,16 +95,16 @@ app.get('/review/:dbrefer/comments', function (req, res) {
     });
 });
 
-app.post('/review/:dbrefer/comments', function (req, res) {
-    comments.setComment(mongoDb.collection('Comment'), req.params.dbrefer, req.body.name, req.body.text, null, function (comment) {
+app.post('/review/:dbrefer/comments', (req, res) => {
+    comments.setComment(mongoDb.collection('Comment'), req.params.dbrefer, req.body.name, req.body.text, null, (comment) => {
         comment.posted = moment(new Date(comment.posted)).format('LLL');
         res.json(comment);
     });
 });
 
-app.post('/review/:dbrefer/comments/:commentId', function (req, res) {
+app.post('/review/:dbrefer/comments/:commentId', (req, res) => {
     console.log(req.params);
-    comments.setComment(mongoDb.collection('Comment'), req.params.dbrefer, req.body.name, req.body.text, req.params.commentId, function (comment) {
+    comments.setComment(mongoDb.collection('Comment'), req.params.dbrefer, req.body.name, req.body.text, req.params.commentId, (comment) => {
        comment.posted = moment(new Date(comment.posted)).format('LLL');
         res.json(comment);
     });

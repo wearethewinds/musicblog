@@ -1,6 +1,6 @@
 'use strict';
 
-var app = require('angular').module('musicblog');
+let app = require('angular').module('musicblog');
 
 app.directive('comment', require('./Comment'));
 app.directive('reviewLink', require('./ReviewLink'));

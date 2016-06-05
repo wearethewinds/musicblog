@@ -1,13 +1,17 @@
-exports.getReview = function(Review, dbrefer, callback) {
+'use strict';
+
+exports.getReview = (Review, dbrefer, callback) => {
     Review
         .findOne({dbrefer: dbrefer})
-        .then(function (rev) {
+        .then((rev) => {
             callback(rev);
         });
 };
 
-exports.increaseReviewCount = function(Review, dbrefer, callback) {
-  Review.update({dbrefer: dbrefer}, {$inc: {accessCount: 1}}, function(err, doc) {
-     callback();
+exports.increaseReviewCount = (Review, dbrefer, callback) => {
+  Review.update({dbrefer: dbrefer}, {$inc: {accessCount: 1}}, (err, doc) => {
+     if (typeof callback === 'function') {
+         callback();
+     }
   });
 };
